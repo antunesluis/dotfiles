@@ -2,6 +2,10 @@
 
 This directory contains the dotfiles for my system
 
+/home/antunesluis/Downloads/Captura de tela de 2024-02-27 12-56-21.png
+
+/home/antunesluis/Downloads/Captura de tela de 2024-02-27 12-56-08.png
+
 ## Requirements
 
 Ensure you have the following installed on your system
