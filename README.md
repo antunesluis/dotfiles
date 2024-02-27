@@ -2,33 +2,10 @@
 
 This directory contains the dotfiles for my system
 
-## Requirements
+![Captura de tela de 2024-02-27 12-56-21](https://github.com/antunesluis/dotfiles/assets/126933163/5878f6ff-bad1-435a-a710-21cabae7c641)
 
-Ensure you have the following installed on your system
-
-### Git
-
-```
-$ sudo apt install git
-```
-
-### Stow
-
-```
-$ sudo apt install stow
-```
-
-## Installation
-
-First, check out the dotfiles repo in your $HOME directory using git
-
-```
-$ git clone https://github.com/antunesluis/dotfiles.git
-$ cd dotfiles
-```
-
-then use GNU stow to create symlinks
-
-```
-$ stow .
-```
+## Content:
+- vim (LazyVim) config;
+- tmux config;
+- alacritty config;
+- zsh config;
