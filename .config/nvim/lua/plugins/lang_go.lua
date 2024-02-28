@@ -136,9 +136,11 @@ return {
       },
     },
   },
+
   {
     "mfussenegger/nvim-lint",
     enabled = true,
+    ft = { "go" },
     opts = function(_, opts)
       local linters = require("lint").linters
 
@@ -155,8 +157,10 @@ return {
       end
     end,
   },
+
   {
     "mfussenegger/nvim-dap",
+    ft = { "go" },
     optional = true,
     dependencies = {
       {
@@ -174,6 +178,7 @@ return {
   },
   {
     "nvim-neotest/neotest",
+    ft = { "go" },
     optional = true,
     dependencies = {
       "nvim-neotest/neotest-go",
@@ -191,6 +196,7 @@ return {
   },
   {
     "andythigpen/nvim-coverage",
+    ft = { "go" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       auto_reload = true,
