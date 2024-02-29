@@ -39,18 +39,6 @@ return {
     },
   },
 
-  -- statusline
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = {
-      options = {
-        -- globalstatus = false,
-        theme = "kanagawa",
-      },
-    },
-  },
-
   -- filename
   {
     "b0o/incline.nvim",

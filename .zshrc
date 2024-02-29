@@ -16,7 +16,7 @@ ZSH_THEME="spaceship"
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+[[ "$TERM" == "xterm" ]] && export TERM=allacritty
 	
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
