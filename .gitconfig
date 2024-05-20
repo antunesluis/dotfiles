@@ -1,0 +1,25 @@
+[user]
+	name = Luis fernando Antunes
+	email = luisantunes0914@gmail.com
+    username = antunesluis
+[init]
+	defaultBranch = main
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
+[alias]
+    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+    st = status
+[core]
+	excludesfile = ~/.gitignore
+	editor = nvim
+	ignorecase = false
+[github]
+	user = antunesluis
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
