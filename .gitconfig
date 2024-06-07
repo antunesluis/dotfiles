@@ -1,9 +1,9 @@
 [user]
-	name = Luis fernando Antunes
-	email = luisantunes0914@gmail.com
+    name = Luis fernando Antunesemail
+    email = luisantunes0914@gmail.com
     username = antunesluis
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [color]
     status = auto
     diff = auto

@@ -10,7 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 
-ZSH_THEME="spaceship"
+#ZSH_THEME="spaceship"
 
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -136,5 +136,11 @@ eval "$(pyenv virtualenv-init -)"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+
+
+alias ls="eza --icons=always"
+#alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
+
+eval "$(starship init zsh)"
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env
