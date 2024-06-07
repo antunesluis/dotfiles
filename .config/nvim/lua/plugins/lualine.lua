@@ -5,7 +5,7 @@ return {
     opts = {
       options = {
         -- globalstatus = false,
-        theme = "kanagawa",
+        theme = "gruvbox",
         component_separators = { left = "|", right = "|" },
         section_separators = { left = "", right = "" },
       },

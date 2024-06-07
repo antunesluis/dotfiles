@@ -1,4 +1,61 @@
 return {
+  -- Rose Pine
+  {
+    "rose-pine/neovim",
+    lazy = true,
+    priority = 1000,
+    name = "rose-pine",
+    opts = {
+      variant = "dawn",
+      dark_variant = "main",
+      dim_inactive_windows = true,
+      extend_background_behind_borders = true,
+      enable = {
+        terminal = true,
+        legacy_highlights = true,
+        migrations = true,
+      },
+      styles = {
+        bold = true,
+        italic = true,
+        transparency = false,
+      },
+    },
+  },
+
+  -- Gruvbox
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = function()
+      vim.o.background = "light"
+      require("gruvbox").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_intend_guides = false,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = true,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+    end,
+    opts = ...,
+  },
 
   -- Kanagawa
   {
@@ -55,8 +112,8 @@ return {
             TelescopePreviewBorder = { bg = "none", fg = theme.ui.bg_dim },
 
             -- Dark completion (popup) menu: More uniform colors for the popup menu.
-            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
           }
@@ -67,6 +124,37 @@ return {
           light = "lotus",
         },
       }
+    end,
+  },
+
+  -- everforest
+  {
+    "sainnhe/everforest",
+    lazy = false,
+    priority = 0,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      --vim.set.background = "light"
+      vim.o.background = "light"
+      vim.g.everforest_enable_italic = true
+      vim.g.everforest_background = "medium"
+    end,
+  },
+
+  -- solarized
+  {
+    "maxmx03/solarized.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.o.background = "light" -- or 'light'
+      require("solarized").setup({
+        transparent = true, -- enable transparent backgroun
+        palette = "solarized",
+        theme = "default", -- or 'neo'
+      })
+      --vim.cmd.colorscheme("solarized")
     end,
   },
 }
