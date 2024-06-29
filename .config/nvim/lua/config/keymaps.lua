@@ -61,6 +61,18 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
+-- Move Lines
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down", silent = true })
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up", silent = true })
+vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", silent = true })
+vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
+
+-- better indenting
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
+
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()

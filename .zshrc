@@ -120,8 +120,8 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
-JAVA_HOME=/usr/lib/jvm/jdk-22-oracle-x64/bin/java
-export JAVA_HOME
+JAVA_HOME=/usr/lib/jvm/jdk-21-oracle-x64/bin/java
+#export JAVA_HOME
 export PATH=$PATH:$JAVA_HOME
 
 export PATH=$PATH:/usr/local/go/bin
@@ -134,11 +134,12 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
+export PATH=/opt/gradle/gradle-8.8/bin:$PATH
+
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 
-
-alias ls="eza --icons=always"
+alias ls="eza --icons=always --group-directories-first"
 #alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
 
 eval "$(starship init zsh)"

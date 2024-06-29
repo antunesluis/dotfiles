@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
+import = ["~/.config/alacritty/themes/gruvbox_light.toml"]
 
 shell = "/bin/zsh"
 
@@ -9,19 +9,19 @@ TERM="alacritty"
 size = 12.0
 
 [font.bold]
-family = "Hack"
+family = "FiraCode"
 style = "Bold"
 
 [font.bold_italic]
-family = "Hack"
+family = "FiraCode"
 style = "Bold Italic"
 
 [font.italic]
-family = "Hack"
+family = "FiraCode"
 style = "Italic"
 
 [font.normal]
-family = "Hack"
+family = "FiraCode"
 style = "Regular"
 
 [font.offset]
@@ -29,7 +29,7 @@ x = 0
 y = 1
 
 [window]
-    opacity = 0.96
+#opacity = 0.96
     decorations = "Full"
     dynamic_title = false
     decorations_theme_variant = "Dark"
