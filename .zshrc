@@ -115,26 +115,26 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+#--------------------------------------------------------
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv virtualenv-init -)"
 
-JAVA_HOME=/usr/lib/jvm/jdk-21-oracle-x64/bin/java
-#export JAVA_HOME
-export PATH=$PATH:$JAVA_HOME
+#JAVA_HOME=/usr/lib/jvm/jdk-21-oracle-x64/bin/java
+#export PATH=$PATH:$JAVA_HOME
 
-export PATH=$PATH:/usr/local/go/bin
+#export PATH=$PATH:/usr/local/go/bin
 
 export PATH="$PATH:/home/antunesluis/.local/bin/"
-export PATH="$PATH:/home/antunesluis/.ghcup/bin"
+#export PATH="$PATH:/home/antunesluis/.ghcup/bin"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv virtualenv-init -)"
 
-export PATH=/opt/gradle/gradle-8.8/bin:$PATH
+#export PATH=/opt/gradle/gradle-8.8/bin:$PATH
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
