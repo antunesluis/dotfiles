@@ -124,7 +124,7 @@ export NVM_DIR="$HOME/.nvm"
 #JAVA_HOME=/usr/lib/jvm/jdk-21-oracle-x64/bin/java
 #export PATH=$PATH:$JAVA_HOME
 
-#export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
 
 export PATH="$PATH:/home/antunesluis/.local/bin/"
 #export PATH="$PATH:/home/antunesluis/.ghcup/bin"
@@ -145,3 +145,6 @@ alias ls="eza --icons=always --group-directories-first"
 eval "$(starship init zsh)"
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env
+
+export PATH=$PATH:/home/antunesluis/.spicetify
+export PATH=$PATH:~/.spicetify
