@@ -2,7 +2,7 @@
   font-family: "JetBrains Mono";
   font-weight: bold;
   min-height: 0;
-  font-size: 102%;
+  font-size: 15;
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
   padding: 1px;
 }
@@ -70,8 +70,8 @@ tooltip label {
   box-shadow: none;
   text-shadow: none;
   border-radius: 12px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   background-color: #ebdbb2;
   color: #282828;
 }

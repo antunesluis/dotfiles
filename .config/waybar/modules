@@ -135,9 +135,4 @@
           "alacritty"
                    ]
     },
-
-"custom/cava": {
-    "exec": "~/.config/dotfiles/hyprland/scripts/waybarCava.sh",
-    "format": "{}",
-    "on-click": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml nvim -c cd ~/.config/dotfiles/"
-    }  }
+  }
