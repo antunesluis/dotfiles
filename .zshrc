@@ -138,6 +138,15 @@ export PATH="$PATH:/home/antunesluis/.local/bin/"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+# Yank to the system clipboard
+function vi-yank-xclip {
+    zle vi-yank
+   echo "$CUTBUFFER" | wl-copy -n
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 
 alias ls="eza --icons=always --group-directories-first"
 #alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
@@ -145,6 +154,9 @@ alias ls="eza --icons=always --group-directories-first"
 eval "$(starship init zsh)"
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env
+
+# Inicia o keychain e adiciona a chave SSH
+eval $(keychain --quiet --eval --agents ssh id_rsa)
 
 export PATH=$PATH:/home/antunesluis/.spicetify
 export PATH=$PATH:~/.spicetify

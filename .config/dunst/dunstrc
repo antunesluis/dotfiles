@@ -39,7 +39,7 @@
     icon_theme = Gruvbox Dark
 
     dmenu = /usr/bin/wofi -d dunst:
-    browser = /usr/bin/vivaldi --new-tab
+    browser = /usr/bin/firefox --new-tab
 
     title = Dunst
     class = Dunst

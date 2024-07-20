@@ -37,7 +37,6 @@ tooltip label {
   color: #ebdbb2;
 }
 
-#custom-cava,
 #clock,
 #cpu,
 #memory,
@@ -79,3 +78,4 @@ tooltip label {
 #temperature.critical {
   background-color: red;
 }
+
