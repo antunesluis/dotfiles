@@ -1,27 +1,13 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-
-#ZSH_THEME="spaceship"
+ZSH_THEME="spaceship"
 
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ "$TERM" == "xterm" ]] && export TERM=allacritty
 	
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -49,92 +35,36 @@ source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-s
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
 plugins=( 
     git
+    docker
+    python
+    golang
     zsh-syntax-highlighting
     zsh-autosuggestions
+    starship
+    archlinux
+    ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=pt_BR.UTF-8
+export EDITOR="nvim"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$PATH:/home/antunesluis/.local/bin/"
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$JAVA_HOME
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#--------------------------------------------------------
-
-#export PATH="$HOME/.pyenv/bin:$PATH"
-#eval "$(pyenv init --path)"
-#eval "$(pyenv virtualenv-init -)"
-
-#JAVA_HOME=/usr/lib/jvm/jdk-21-oracle-x64/bin/java
-#export PATH=$PATH:$JAVA_HOME
-
-export PATH=$PATH:/usr/local/go/bin
-
-export PATH="$PATH:/home/antunesluis/.local/bin/"
-#export PATH="$PATH:/home/antunesluis/.ghcup/bin"
-
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init --path)"
-#eval "$(pyenv virtualenv-init -)"
-
-#export PATH=/opt/gradle/gradle-8.8/bin:$PATH
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
@@ -148,12 +78,17 @@ zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
 
+# Global settings
+alias dotfiles='cd $HOME/dotfiles'
+alias projects='cd $HOME/Projects/GitHub'
+alias obsidian='cd $HOME/Projects/GitHub/vault_obsidian'
+alias ll='eza --long --header --group-directories-first --git --group --all'
 alias ls="eza --icons=always --group-directories-first"
-#alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias tree='tree -C'
 
-eval "$(starship init zsh)"
+# Python
+alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
+alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
+alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
+alias activate='source .venv/bin/activate'
 
-[ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env
-
-export PATH=$PATH:/home/antunesluis/.spicetify
-export PATH=$PATH:~/.spicetify
