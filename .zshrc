@@ -155,8 +155,5 @@ eval "$(starship init zsh)"
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env
 
-# Inicia o keychain e adiciona a chave SSH
-eval $(keychain --quiet --eval --agents ssh id_rsa)
-
 export PATH=$PATH:/home/antunesluis/.spicetify
 export PATH=$PATH:~/.spicetify

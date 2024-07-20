@@ -1,23 +1,30 @@
 [user]
-    name = Luis Antunes
-    email = luisantunes0914@gmail.com
-    username = antunesluis
+name = Luis Antunes
+email = luisantunes0914@gmail.com
+username = antunesluis
+
 [init]
-    defaultBranch = main
+defaultBranch = main
+
 [color]
-    status = auto
-    diff = auto
-    branch = auto
-    interactive = auto
-    grep = auto
-    ui = auto
+ui = true
+status = auto
+diff = auto
+branch = auto
+interactive = auto
+grep = auto
+
 [alias]
-    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
-    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-    st = status
+l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short --color --decorate
+ui = auto
+ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+st = status
+
 [core]
-	excludesfile = ~/.gitignore
-	editor = nvim
-	ignorecase = false
+excludesfile = ~/.gitignore
+editor = nvim
+ignorecase = false
+
 [github]
-	user = antunesluis
+user = antunesluis
