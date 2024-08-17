@@ -1,8 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="spaceship"
-
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -90,5 +88,5 @@ alias tree='tree -C'
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
 alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
 alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
-alias activate='source .venv/bin/activate'
+alias activate='source venv/bin/activate'
 

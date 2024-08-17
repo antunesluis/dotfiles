@@ -13,9 +13,9 @@
 "margin-bottom": 0,
 
 "modules-left": [
-  "hyprland/workspaces",
-  "clock",
-  "mpris"
+    "hyprland/workspaces",
+    "wlr/taskbar",
+    "mpris"
 	],
 
 "modules-center": [
@@ -23,10 +23,11 @@
 	], 
 
 "modules-right": [
-	"wlr/taskbar",
 	"cpu", 
 	"temperature", 
 	"memory",
-	"pulseaudio"
+	"pulseaudio",
+    "battery",
+    "clock"
 	]
 }
