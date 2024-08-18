@@ -3,7 +3,7 @@ return -- Gruvbox
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
-        vim.o.background = "dark"
+        vim.o.background = "light"
         require("gruvbox").setup({
             terminal_colors = true, -- add neovim terminal colors
             undercurl = true,
@@ -26,7 +26,7 @@ return -- Gruvbox
             palette_overrides = {},
             overrides = {},
             dim_inactive = false,
-            transparent_mode = true,
+            transparent_mode = false,
         })
     end,
     opts = ...,
