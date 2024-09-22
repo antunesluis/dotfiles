@@ -46,9 +46,11 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 keymap.set("n", "te", ":tabedit")
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
+
 -- Move window
 keymap.set("n", "sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
@@ -62,18 +64,26 @@ keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Move Lines
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down", silent = true })
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up", silent = true })
-vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", silent = true })
-vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
-vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
-vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
-
--- better indenting
+vim.keymap.set("n", "<A-C-j>", "<cmd>m .+1<cr>==", { desc = "Move down", silent = true })
+vim.keymap.set("n", "<A-C-k>", "<cmd>m .-2<cr>==", { desc = "Move up", silent = true })
+vim.keymap.set("i", "<A-C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", silent = true })
+vim.keymap.set("i", "<A-C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
+vim.keymap.set("v", "<A-C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
+vim.keymap.set("v", "<A-C-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true }) -- better indenting
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
+-- buffers:
+keymap.set("n", "[b", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
+keymap.set("n", "]b", ":bnext<CR>", { desc = "Next buffer", silent = true })
+
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
-  vim.diagnostic.goto_next()
+    vim.diagnostic.goto_next()
 end, opts)
+
+-- TMUX
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true })
+
+keymap.set('n', '<leader>xx', '<cmd>Telescope diagnostics<cr>')
