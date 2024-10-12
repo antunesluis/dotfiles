@@ -1,23 +1,70 @@
 return {
-    {
-        "nvim-lualine/lualine.nvim",
-        opts = function(_, opts)
-            local LazyVim = require("lazyvim.util")
-            opts.sections.lualine_c[4] = {
-                LazyVim.lualine.pretty_path({
-                    length = 0,
-                    relative = "cwd",
-                    modified_hl = "MatchParen",
-                    directory_hl = "",
-                    filename_hl = "Bold",
-                    modified_sign = "",
-                    readonly_icon = " 󰌾 ",
-                }),
-            }
-            opts.options = {
-                component_separators = { left = "|", right = "|" },
-                section_separators = { left = "", right = "" },
-            }
-        end,
+  "nvim-lualine/lualine.nvim",
+  event = "BufReadPre",
+  init = function()
+    vim.keymap.set("n", "<leader>l", ':lua require("lualine").refresh<CR>', { desc = "Refresh status line" })
+  end,
+  opts = {
+    options = {
+      theme = "auto",
+      component_separators = "│",
+      transparent = true,
+      section_separators = { left = "", right = "" },
     },
+    sections = {
+      lualine_a = { "mode" },
+      lualine_b = {
+        {
+          "filename",
+          file_status = true,
+          path = 1,
+        },
+        "diagnostics",
+        "branch",
+        "diff",
+      },
+      lualine_c = {
+        {
+          "searchcount",
+          maxcount = 999,
+          timeout = 500,
+        },
+      },
+      lualine_x = {
+        {
+          "datetime",
+          style = "%H:%M:%S",
+        },
+        "encoding",
+        {
+          "filetype",
+          colored = true,
+        },
+      },
+      lualine_y = { "progress" },
+      lualine_z = { "location" },
+    },
+    inactive_sections = {
+      lualine_a = {
+        {
+          "filename",
+          file_status = true,
+          path = 1,
+        },
+        "diagnostics",
+        "diff",
+      },
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = { "location" },
+    },
+    tabline = {},
+    extensions = {
+      "trouble",
+      "fzf",
+      "nvim-dap-ui",
+    },
+  },
 }

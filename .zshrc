@@ -5,6 +5,8 @@ source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autos
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ "$TERM" == "xterm" ]] && export TERM=allacritty
+
+#eval "$(starship init zsh)"
 	
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -43,7 +45,6 @@ plugins=(
     golang
     zsh-syntax-highlighting
     zsh-autosuggestions
-    starship
     archlinux
     ssh-agent
 )
@@ -91,6 +92,9 @@ alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
 alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
 alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
 alias activate='source venv/bin/activate'
+
+
+eval "$(oh-my-posh init zsh --config $HOME/dotfiles/.config/ohmyposh/conf.toml)"
 
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env

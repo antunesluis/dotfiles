@@ -29,8 +29,8 @@ x = 0
 y = 1
 
 [window]
-    blur = true
-    opacity = 0.85
+#blur = true
+#opacity = 0.85
     decorations = "Full"
     dynamic_title = false
     decorations_theme_variant = "Dark"
@@ -44,8 +44,8 @@ y = 1
     history = 10000
 
 [selection]
-    save_to_clipboard=true
 
+    save_to_clipboard=true
 [cursor]
     style={shape="Beam", blinking="Always"}
     blink_interval=450
@@ -58,8 +58,8 @@ mods = "Control|Shift"
 [[keyboard.bindings]]
 action = "Copy"
 key = "C"
-mods = "Control|Shift"
 
+mods = "Control|Shift"
 [[keyboard.bindings]]
 action = "PasteSelection"
 key = "Insert"
