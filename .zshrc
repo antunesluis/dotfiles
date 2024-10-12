@@ -75,6 +75,11 @@ function vi-yank-xclip {
    echo "$CUTBUFFER" | wl-copy -n
 }
 
+# Carregar os aliases do arquivo separado
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
+fi
+
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 

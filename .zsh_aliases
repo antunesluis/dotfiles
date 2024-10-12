@@ -7,13 +7,64 @@ alias ll='eza --long --header --group-directories-first --git --group --all'
 alias ls="eza --icons=always --group-directories-first"
 alias tree='tree -C'
 
+alias vi='nvim'
+
 # Python
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
 alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
 alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
 alias activate='source venv/bin/activate'
 
-# fzf
-alias f='fzf'
-alias fv='nvim $(fzf)'
+#############################################################################################
 
+# Aliases básicos para fzf
+alias f='fzf'
+alias fv='nvim $(fzf -m --preview="bat --color=always {}")'
+alias fk='kill -9 $(ps -ef | sed 1d | fzf -m | awk "{print \$2}")'
+
+# Aliases para busca e edição de arquivos
+alias fe='nvim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
+alias fge='nvim $(git ls-files | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
+
+# Aliases para navegação em diretórios
+alias fd='cd $(find . -type d | fzf)'
+alias fda='cd $(find ~ -type d | fzf)'
+
+# Aliases para histórico de comandos
+alias fh='eval $(history | fzf --tac | sed "s/ *[0-9]* *//")'
+
+# Aliases para processos
+alias fp='ps aux | fzf'
+
+# Aliases para git
+alias fgb='git checkout $(git branch | fzf)'
+alias fgl='git log --oneline | fzf --preview "git show --color=always {1}"'
+
+#############################################################################################
+
+# Aliases básicos para zoxide
+alias zz='z -i'      # Navegação interativa com fzf
+alias zi='z -i'      # Alternativa para navegação interativa
+alias zf='z -I'      # Use fzf para selecionar entre múltiplos resultados
+
+# Aliases para combinar zoxide com outros comandos
+alias zv='z -I && nvim .'    # Navega para um diretório e abre o Neovim
+alias zr='z -I && ranger'    # Navega para um diretório e abre o ranger
+alias zd='z -I && ls -la'    # Navega para um diretório e lista seu conteúdo
+alias zt='z -I && tree'      # Navega para um diretório e mostra sua estrutura
+
+# Aliases para adicionar diretórios ao zoxide
+alias za='zoxide add'        # Adiciona o diretório atual ao zoxide
+alias zar='zoxide add -r'    # Aumenta o ranking do diretório atual
+
+# Aliases para remover diretórios do zoxide
+alias zrm='zoxide remove'    # Remove um diretório do zoxide
+alias zri='zoxide remove -i' # Remove interativamente diretórios do zoxide
+
+# Alias para mostrar os diretórios mais frequentes
+alias zt='zoxide query -l | head -n 10'  # Top 10 diretórios
+
+# Função para navegar e executar um comando
+zrun() {
+    z "$1" && shift && "$@"
+}
