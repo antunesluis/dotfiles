@@ -78,23 +78,8 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
-
-# Global settings
-alias dotfiles='cd $HOME/dotfiles'
-alias projects='cd $HOME/Projects/GitHub'
-alias obsidian='cd $HOME/Projects/GitHub/vault_obsidian'
-alias ll='eza --long --header --group-directories-first --git --group --all'
-alias ls="eza --icons=always --group-directories-first"
-alias tree='tree -C'
-
-# Python
-alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
-alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
-alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
-alias activate='source venv/bin/activate'
-
-
 eval "$(oh-my-posh init zsh --config $HOME/dotfiles/.config/ohmyposh/conf.toml)"
-
+eval "$(zoxide init zsh)"
+source <(fzf --zsh)
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env

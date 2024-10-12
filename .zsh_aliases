@@ -1,0 +1,19 @@
+# Global settings
+alias dotfiles='cd $HOME/dotfiles'
+alias projects='cd $HOME/Projects/GitHub'
+alias obsidian='cd $HOME/Projects/GitHub/vault_obsidian'
+
+alias ll='eza --long --header --group-directories-first --git --group --all'
+alias ls="eza --icons=always --group-directories-first"
+alias tree='tree -C'
+
+# Python
+alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
+alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
+alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
+alias activate='source venv/bin/activate'
+
+# fzf
+alias f='fzf'
+alias fv='nvim $(fzf)'
+
