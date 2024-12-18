@@ -1,70 +1,101 @@
-# Global settings
+###### Global Settings e Diretórios ####################################
+
+# Navegar para o repositório de dotfiles.
 alias dotfiles='cd $HOME/dotfiles'
+
+# Acessar a pasta de projetos no GitHub.
 alias projects='cd $HOME/Projects/GitHub'
+
+# Navegar para o vault do Obsidian.
 alias obsidian='cd $HOME/Projects/GitHub/vault_obsidian'
 
+
+###### Comandos de Listagem ############################################
+
+# Exibe listagem detalhada com ícones, grupos, e status de git.
 alias ll='eza --long --header --group-directories-first --git --group --all'
+
+# Listagem simplificada com ícones.
 alias ls="eza --icons=always --group-directories-first"
+
+# Exibe a estrutura de diretórios em árvore colorida.
 alias tree='tree -C'
 
+# Substitui vi por nvim.
 alias vi='nvim'
 
-# Python
+
+###### Python ###########################################################
+
+# Remove arquivos de cache do Python.
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
+
+# Desinstala todos os pacotes instalados com pip.
 alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
+
+# Instala dependências a partir de múltiplos arquivos requirements.
 alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
+
+# Ativa o ambiente virtual.
 alias activate='source venv/bin/activate'
 
-#############################################################################################
 
-# Aliases básicos para fzf
+###### fzf (Busca e Interatividade) #####################################
+
+# Atalho simples para abrir o fzf.
 alias f='fzf'
+
+# Abre múltiplos arquivos no nvim com pré-visualização.
 alias fv='nvim $(fzf -m --preview="bat --color=always {}")'
+
+# Mata processos selecionados via fzf.
 alias fk='kill -9 $(ps -ef | sed 1d | fzf -m | awk "{print \$2}")'
 
-# Aliases para busca e edição de arquivos
+# Busca e edita arquivos com pré-visualização.
 alias fe='nvim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
+
+# Edita arquivos controlados pelo Git.
 alias fge='nvim $(git ls-files | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
 
-# Aliases para navegação em diretórios
+# Navega para diretórios selecionados.
 alias fd='cd $(find . -type d | fzf)'
 alias fda='cd $(find ~ -type d | fzf)'
 
-# Aliases para histórico de comandos
+# Executa um comando do histórico selecionado com fzf.
 alias fh='eval $(history | fzf --tac | sed "s/ *[0-9]* *//")'
 
-# Aliases para processos
+# Lista processos e permite seleção interativa.
 alias fp='ps aux | fzf'
 
-# Aliases para git
+# Troca de branch no Git usando fzf.
 alias fgb='git checkout $(git branch | fzf)'
-alias fgl='git log --oneline | fzf --preview "git show --color=always {1}"'
 
-#############################################################################################
+# Visualiza logs do Git com pré-visualização.
+alias fgl='git log --oneline | fzf --preview "git show --color=always {1}")'
 
-# Aliases básicos para zoxide
-alias zz='z -i'      # Navegação interativa com fzf
-alias zi='z -i'      # Alternativa para navegação interativa
-alias zf='z -I'      # Use fzf para selecionar entre múltiplos resultados
 
-# Aliases para combinar zoxide com outros comandos
-alias zv='z -I && nvim .'    # Navega para um diretório e abre o Neovim
-alias zr='z -I && ranger'    # Navega para um diretório e abre o ranger
-alias zd='z -I && ls -la'    # Navega para um diretório e lista seu conteúdo
-alias zt='z -I && tree'      # Navega para um diretório e mostra sua estrutura
+###### zoxide (Navegação Rápida) #########################################
+alias cd='z'
 
-# Aliases para adicionar diretórios ao zoxide
-alias za='zoxide add'        # Adiciona o diretório atual ao zoxide
-alias zar='zoxide add -r'    # Aumenta o ranking do diretório atual
+# Adiciona o diretório atual ao banco do zoxide.
+alias za='zoxide add'
+alias cda='zoxide add'
 
-# Aliases para remover diretórios do zoxide
-alias zrm='zoxide remove'    # Remove um diretório do zoxide
-alias zri='zoxide remove -i' # Remove interativamente diretórios do zoxide
+# Aumenta o ranking do diretório atual.
+alias zar='zoxide add -r'
+alias cdar='zoxide add -r'
 
-# Alias para mostrar os diretórios mais frequentes
-alias zt='zoxide query -l | head -n 10'  # Top 10 diretórios
+# Remove um diretório do zoxide.
+alias zrm='zoxide remove'
+alias cdrm='zoxide remove'
 
-# Função para navegar e executar um comando
+# Exibe os 10 diretórios mais acessados.
+alias zt='zoxide query -l | head -n 10'
+alias cdt='zoxide query -l | head -n 10'
+
+###### Funções Personalizadas ###########################################
+
+# Navega para um diretório e executa um comando.
 zrun() {
     z "$1" && shift && "$@"
 }

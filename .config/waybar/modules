@@ -1,27 +1,28 @@
 {
-"hyprland/workspaces": {
-	"active-only": true,
-    "all-outputs": false, 
-    "show-special": false,
-    "on-click": "activate",
+"workspaces": {
+    "format": "{name}",
+    "format-icons": false,
+    "all-outputs": true,
+    "numeric-first": true,
+    "on-click": "hyprctl dispatch workspace {name}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
 },
-       
+
 "bluetooth": {
     "format": "  ",
     "format-disabled": " 󰂳 ",
     "format-connected": " 󰂱 {num_connections} ",
-    "tooltip-format": " {device_alias}",
-    "tooltip-format-connected": "{device_enumerate}",
-    "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
+    "tooltip-format": "  {device_alias} ",
+    "tooltip-format-connected": " {device_enumerate} ",
     "tooltip": true,
+    "tooltip-format-enumerate-connected": "  {device_alias} 󰂄{device_battery_percentage}% ",
     "on-click": "blueman-manager"
 },
      
 "clock": {
     "interval": 1,
-    "format": "|    {:%H:%M} ",
+    "format": " {:%H:%M | %A, %d %B} ",
     "format-alt": "   {:%H:%M     %Y, %d %B, %A} ",
     "tooltip-format": "|  <tt><small>{calendar}</small></tt>",
     "calendar": {
@@ -66,8 +67,8 @@
 },
 
 "battery": {
-    "format": " {capacity}% {icon} ",
-    "format-time": "{H} h {M} min",
+    "format": "  {capacity}% {icon}  ",
+    "format-time": " {H} h {M} min ",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-charging": "󰂄",
 },
@@ -77,7 +78,7 @@
     "format": " {percentage}% 󰾆 ",
     "format-alt-click": "click",
     "tooltip": true,
-    "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+    "tooltip-format": " {used:0.1f}GB/{total:0.1f}G ",
     "on-click-right": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml --title btop sh -c 'btop'"
 },
 
@@ -114,7 +115,7 @@
     },
     "scroll-step": 5.0,
     "on-click": "pavucontrol -t 3",
-	"tooltip-format": "{icon} {desc} | {volume}%",
+	"tooltip-format": " {icon} {desc} | {volume}% ",
     "smooth-scrolling-threshold": 1
 },
       
@@ -123,7 +124,7 @@
     "tooltip": true,
     "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
     "critical-threshold": 82,
-    "format-critical": "{temperatureC}°C {icon}",
+    "format-critical": " {temperatureC}°C {icon} ",
     "format": " {temperatureC}°C {icon} ",
     "format-icons": ["󰈸"],
     "on-click-right": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml --title nvtop sh -c 'nvtop'"
@@ -133,7 +134,7 @@
     "format": " {icon} ",
     "icon-size": 20,
     "all-outputs": false,
-    "tooltip-format": "{title}",
+    "tooltip-format": " {title} ",
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
@@ -143,3 +144,4 @@
                    ]
     },
   }
+

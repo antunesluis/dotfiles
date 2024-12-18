@@ -1,12 +1,9 @@
-import = ["~/.config/alacritty/themes/gruvbox_dark.toml"]
-
-shell = "/bin/zsh"
 
 [env]
 TERM="alacritty"
 
 [font]
-size = 13.0
+size = 13.5
 
 [font.bold]
 family = "Iosevka"
@@ -29,8 +26,8 @@ x = 0
 y = 1
 
 [window]
-#blur = true
-#opacity = 0.85
+    blur = true
+    opacity = 0.85
     decorations = "Full"
     dynamic_title = false
     decorations_theme_variant = "Dark"
@@ -133,3 +130,10 @@ action = "ScrollToBottom"
 key = "End"
 mode = "~Alt"
 mods = "Shift"
+
+[general]
+import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
+
+[terminal]
+
+shell = "/bin/zsh"

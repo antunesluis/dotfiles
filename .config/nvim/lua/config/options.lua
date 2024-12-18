@@ -166,5 +166,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.keymap.set("n", "<S-l>", vim.diagnostic.open_float, { noremap = true, silent = true })
+
 -- Configurações do Prettier
 vim.g.lazyvim_prettier_needs_config = false
+
+vim.opt.foldmethod = "marker"
+vim.opt.foldlevel = 99
+vim.opt.foldenable = true

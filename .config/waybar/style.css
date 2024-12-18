@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(31, 31, 40, 0.8);
   transition-property: background-color;
   transition-duration: .5s;
 }
@@ -28,13 +28,13 @@ window#waybar.empty #window {
 }
 
 tooltip {
-  opacity: 1;
+  opacity: 0.9;
   border-radius: 10px;
 }
 
 tooltip label {
   padding: 10px;
-  color: #ebdbb2;
+  color: #DCD7BA;
 }
 
 #clock,
@@ -49,15 +49,18 @@ tooltip label {
 #custom-menu,
 #custom-swaync {
   border-radius: 10px;
-  color: #ebdbb2;
+  color: #DCD7BA;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 6px;
   padding-right: 6px;
+
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #window {
-  color: #ebdbb2;
+  color: #DCD7BA;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 6px;
@@ -67,16 +70,23 @@ tooltip label {
 
 #workspaces button {
   margin: 1px;
+
   box-shadow: none;
   text-shadow: none;
-  border-radius: 12px;
-  padding-left: 5px;
-  padding-right: 5px;
-  background-color: #ebdbb2;
-  color: #282828;
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: #2A2A37;
+  color: #DCD7BA;
+}
+
+#workspaces button.active {
+  background-color: #7E9CD8;
+  color: #1F1F28;
 }
 
 #temperature.critical {
   background-color: red;
 }
-
