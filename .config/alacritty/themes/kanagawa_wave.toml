@@ -1,36 +1,39 @@
+# Tema Kanagawa Wave para Alacritty
+[colors]
+# Cores primárias
 [colors.primary]
-background = '#1f1f28'
-foreground = '#dcd7ba'
+background = "#1f1f28"  # Fundo escuro suave
+foreground = "#dcd7ba"  # Texto bege suave
 
+# Cursor
+[colors.cursor]
+text = "#1f1f28"        # Cor do texto no cursor
+cursor = "#dcd7ba"      # Cor do cursor
+
+# Cores normais
 [colors.normal]
-black = '#090618'
-red = '#c34043'
-green = '#76946a'
-yellow = '#c0a36e'
-blue = '#7e9cd8'
-magenta = '#957fb8'
-cyan = '#6a9589'
-white = '#c8c093'
+black   = "#1f1f28"     # Preto suave (fundo)
+red     = "#c34043"     # Vermelho terracota
+green   = "#76946a"     # Verde musgo suave
+yellow  = "#c0a36e"     # Amarelo areia
+blue    = "#7e9cd8"     # Azul oceânico
+magenta = "#957fb8"     # Roxo lavanda
+cyan    = "#6a9589"     # Verde-água suave
+white   = "#dcd7ba"     # Bege claro (texto principal)
 
+# Cores brilhantes
 [colors.bright]
-black = '#727169'
-red = '#e82424'
-green = '#98bb6c'
-yellow = '#e6c384'
-blue = '#7fb4ca'
-magenta = '#938aa9'
-cyan = '#7aa89f'
-white = '#dcd7ba'
+black   = "#54546d"     # Cinza escuro para contrastes
+red     = "#e82424"     # Vermelho vibrante
+green   = "#98bb6c"     # Verde limão
+yellow  = "#e6c384"     # Amarelo claro
+blue    = "#7fb4ca"     # Azul claro
+magenta = "#938aa9"     # Roxo acinzentado
+cyan    = "#7aa89f"     # Azul esverdeado
+white   = "#dcd7ba"     # Bege claro (destaques)
 
+# Seleção
 [colors.selection]
-background = '#2d4f67'
-foreground = '#c8c093'
-
-[[colors.indexed_colors]]
-index = 16
-color = '#ffa066'
-
-[[colors.indexed_colors]]
-index = 17
-color = '#ff5d62'
+text = "#c8c093"         # Texto selecionado
+background = "#2d4f67"   # Fundo da seleção
 

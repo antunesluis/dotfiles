@@ -20,8 +20,7 @@ return {
     {
       ";f",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.find_files({
+        require("telescope.builtin").find_files({
           no_ignore = false,
           hidden = true,
         })
@@ -31,8 +30,7 @@ return {
     {
       ";r",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.live_grep({
+        require("telescope.builtin").live_grep({
           additional_args = { "--hidden" },
         })
       end,
@@ -41,40 +39,35 @@ return {
     {
       "\\\\",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.buffers()
+        require("telescope.builtin").buffers()
       end,
       desc = "Lists open buffers",
     },
     {
       ";t",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.help_tags()
+        require("telescope.builtin").help_tags()
       end,
       desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
     },
     {
       ";;",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.resume()
+        require("telescope.builtin").resume()
       end,
       desc = "Resume the previous telescope picker",
     },
     {
       ";e",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.diagnostics()
+        require("telescope.builtin").diagnostics()
       end,
       desc = "Lists Diagnostics for all open buffers or a specific buffer",
     },
     {
       ";s",
       function()
-        local builtin = require("telescope.builtin")
-        builtin.treesitter()
+        require("telescope.builtin").treesitter()
       end,
       desc = "Lists Function names, variables, from Treesitter",
     },
@@ -82,7 +75,6 @@ return {
       "sf",
       function()
         local telescope = require("telescope")
-
         local function telescope_buffer_dir()
           return vim.fn.expand("%:p:h")
         end
@@ -104,8 +96,9 @@ return {
   config = function(_, opts)
     local telescope = require("telescope")
     local actions = require("telescope.actions")
-    local fb_actions = require("telescope").extensions.file_browser.actions
+    local fb_actions = telescope.extensions.file_browser.actions
 
+    opts.defaults = opts.defaults or {} -- Garante que opts.defaults esteja inicializado
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
       wrap_results = true,
       layout_strategy = "horizontal",
@@ -116,6 +109,7 @@ return {
         n = {},
       },
     })
+
     opts.pickers = {
       diagnostics = {
         theme = "ivy",
@@ -125,15 +119,13 @@ return {
         },
       },
     }
+
     opts.extensions = {
       file_browser = {
         theme = "dropdown",
-        -- disables netrw and use telescope-file-browser in its place
         hijack_netrw = true,
         mappings = {
-          -- your custom insert mode mappings
-          ["n"] = {
-            -- your custom normal mode mappings
+          n = {
             ["N"] = fb_actions.create,
             ["h"] = fb_actions.goto_parent_dir,
             ["/"] = function()
@@ -155,8 +147,9 @@ return {
         },
       },
     }
+
     telescope.setup(opts)
-    require("telescope").load_extension("fzf")
-    require("telescope").load_extension("file_browser")
+    telescope.load_extension("fzf")
+    telescope.load_extension("file_browser")
   end,
 }

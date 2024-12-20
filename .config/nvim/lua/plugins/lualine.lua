@@ -12,10 +12,10 @@ return {
       section_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = { "mode" },
       lualine_b = {
         {
           "filename",
+          lualine_a = { "mode" },
           file_status = true,
           path = 1,
         },
