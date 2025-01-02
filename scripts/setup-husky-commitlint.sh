@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variáveis
-CONFIG_DIR=".config"
+CONFIG_DIR=".config-git-tools"
 HUSKY_DIR="$CONFIG_DIR/husky"
 COMMITLINT_CONFIG="$CONFIG_DIR/commitlint.config.js"
 

@@ -27,8 +27,10 @@ fishd.*
 .env
 .nvim.lua
 
-./node_modules/*
-./.config-git-tools/*
+node_modules/
+.config-git-tools/
+package-lock.json
+package.json
 
 # Vim
 Session.vim
