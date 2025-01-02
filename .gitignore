@@ -27,6 +27,9 @@ fishd.*
 .env
 .nvim.lua
 
+./node_modules/*
+./.config-git-tools/*
+
 # Vim
 Session.vim
 .vim/bundle/
