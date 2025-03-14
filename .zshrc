@@ -62,7 +62,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completi
 
 export PATH="$HOME/dotfiles/scripts:$PATH"
+export JAVA_HOME=/usr/lib/jvm/default
+export PATH=$PATH:$JAVA_HOME/bin
 
 # Load syntax highlighting and autosuggestions last
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus

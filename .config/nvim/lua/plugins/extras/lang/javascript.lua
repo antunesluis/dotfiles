@@ -30,6 +30,7 @@ return {
             },
           },
         },
+        --
         -- Configuração do ESLint
         eslint = {
           settings = {

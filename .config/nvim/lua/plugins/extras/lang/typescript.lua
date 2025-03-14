@@ -1,0 +1,98 @@
+-- return {
+--   -- Configuração do LSP
+--   {
+--     "neovim/nvim-lspconfig",
+--     opts = {
+--       servers = {
+--         -- Configuração do TypeScript LSP
+--         tsserver = {
+--           keys = {
+--             { "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", desc = "Organize Imports" },
+--             { "<leader>cR", "<cmd>TypescriptRenameFile<CR>", desc = "Rename File" },
+--           },
+--           settings = {
+--             typescript = {
+--               format = {
+--                 indentSize = 2,
+--                 convertTabsToSpaces = true,
+--                 tabSize = 2,
+--               },
+--               inlayHints = {
+--                 includeInlayParameterNameHints = "all",
+--                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+--                 includeInlayFunctionParameterTypeHints = true,
+--                 includeInlayVariableTypeHints = true,
+--                 includeInlayPropertyDeclarationTypeHints = true,
+--                 includeInlayFunctionLikeReturnTypeHints = true,
+--                 includeInlayEnumMemberValueHints = true,
+--               },
+--               suggest = {
+--                 completeFunctionCalls = true,
+--               },
+--             },
+--             javascript = {
+--               format = {
+--                 indentSize = 2,
+--                 convertTabsToSpaces = true,
+--                 tabSize = 2,
+--               },
+--               inlayHints = {
+--                 includeInlayParameterNameHints = "all",
+--                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+--                 includeInlayFunctionParameterTypeHints = true,
+--                 includeInlayVariableTypeHints = true,
+--                 includeInlayPropertyDeclarationTypeHints = true,
+--                 includeInlayFunctionLikeReturnTypeHints = true,
+--                 includeInlayEnumMemberValueHints = true,
+--               },
+--             },
+--           },
+--         },
+--       },
+--     },
+--   },
+--
+--   -- Configuração do null-ls para linting e formatting
+--   {
+--     "nvimtools/none-ls.nvim",
+--     opts = function(_, opts)
+--       local nls = require("null-ls")
+--       opts.sources = vim.list_extend(opts.sources or {}, {
+--         nls.builtins.formatting.prettier.with({
+--           filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "json", "yaml" },
+--         }),
+--         nls.builtins.diagnostics.eslint,
+--         nls.builtins.code_actions.eslint,
+--       })
+--     end,
+--   },
+--
+--   -- Configuração do nvim-treesitter
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     opts = function(_, opts)
+--       if type(opts.ensure_installed) == "table" then
+--         vim.list_extend(opts.ensure_installed, {
+--           "typescript",
+--           "tsx",
+--         })
+--       end
+--     end,
+--   },
+--
+--   -- Configuração do telescope para melhor suporte a arquivos TS
+--   {
+--     "nvim-telescope/telescope.nvim",
+--     opts = {
+--       defaults = {
+--         file_ignore_patterns = {
+--           "node_modules",
+--           "dist",
+--           "build",
+--           ".git",
+--           ".next",
+--         },
+--       },
+--     },
+--   },
+-- }
