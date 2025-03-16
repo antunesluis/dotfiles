@@ -1,7 +1,9 @@
 configuration {
+    modi: "drun,run,window";
     show-icons: true;
     font: "JetBrains Mono 12";
-    icon-theme: "Gruvbox Dark";
+    icon-theme: "Papirus";
+    terminal: "alacritty";
 
     display-ssh:    "󰣀 ssh:";
     display-run:    "󱓞 run:";
@@ -13,4 +15,4 @@ configuration {
     dpi: 120;
 }
 
-@theme "gruvbox-material"
+@theme "/home/antunesluis/.config/rofi/rofi-theme.rasi"

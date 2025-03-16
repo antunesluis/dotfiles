@@ -1,0 +1,138 @@
+/**
+ * Modern Dark Theme para Rofi
+ */
+* {
+    dark0: #121212;
+    dark1: #1a1a1a;
+    dark2: #242424;
+    dark3: #2e2e2e;
+
+    accent: #5294e2;
+    accent-alt: #3d7ecc;
+
+    text-primary: #f0f0f0;
+    text-secondary: #bbbbbb;
+    text-disabled: #777777;
+
+    urgent: #e53935;
+    urgent-alt: #c62828;
+
+    background-color: transparent;
+    transparent: rgba(18,18,18,0);
+
+    highlight: underline bold #f0f0f0;
+}
+
+window {
+    location: center;
+    anchor: center;
+    border-radius: 12px;
+    height: 560px;
+    width: 600px;
+    background-color: @transparent;
+    spacing: 0;
+    children: [mainbox];
+    orientation: horizontal;
+}
+
+mainbox {
+    spacing: 0;
+    children: [inputbar, message, listview];
+}
+
+message {
+    padding: 10px;
+    border: 0px 2px 2px 2px;
+    border-color: @dark0;
+    background-color: @dark2;
+}
+
+inputbar {
+    color: @text-primary;
+    padding: 14px;
+    background-color: @dark0;
+    border-color: @dark0;
+    border: 1px;
+    border-radius: 12px 12px 0px 0px;
+}
+
+entry, prompt, case-indicator {
+    text-font: inherit;
+    text-color: inherit;
+}
+
+prompt {
+    margin: 0px 1em 0em 0em;
+    text-color: @accent;
+}
+
+listview {
+    padding: 8px;
+    border-radius: 0px 0px 12px 12px;
+    border: 2px 2px 2px 2px;
+    border-color: @dark0;
+    background-color: @dark0;
+    dynamic: false;
+}
+
+element {
+    padding: 8px;
+    vertical-align: 0.5;
+    border-radius: 8px;
+    color: @text-secondary;
+    text-color: @text-primary;
+    background-color: @dark1;
+    margin: 2px 0;
+}
+
+element.normal.active {
+    background-color: @dark2;
+    text-color: @accent;
+}
+
+element.normal.urgent {
+    background-color: @urgent-alt;
+    text-color: @text-primary;
+}
+
+element.selected.normal {
+    background-color: @accent;
+    text-color: @dark0;
+}
+
+element.selected.active {
+    background-color: @accent-alt;
+    text-color: @dark0;
+}
+
+element.selected.urgent {
+    background-color: @urgent;
+    text-color: @text-primary;
+}
+
+element.alternate.normal {
+    background-color: @transparent;
+}
+
+element-text, element-icon {
+    size: 3ch;
+    margin: 0 10 0 0;
+    vertical-align: 0.5;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+button {
+    padding: 6px;
+    color: @text-secondary;
+    horizontal-align: 0.5;
+    border: 2px 0px 2px 2px;
+    border-radius: 10px;
+    border-color: @dark3;
+}
+
+button.selected.normal {
+    border: 2px 0px 2px 2px;
+    border-color: @accent;
+    text-color: @accent;
+}

@@ -1,5 +1,5 @@
 {
-"workspaces": {
+  "workspaces": {
     "format": "{name}",
     "format-icons": false,
     "all-outputs": true,
@@ -7,9 +7,9 @@
     "on-click": "hyprctl dispatch workspace {name}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1"
-},
+  },
 
-"bluetooth": {
+  "bluetooth": {
     "format": "  ",
     "format-disabled": " 󰂳 ",
     "format-connected": " 󰂱 {num_connections} ",
@@ -18,108 +18,85 @@
     "tooltip": true,
     "tooltip-format-enumerate-connected": "  {device_alias} 󰂄{device_battery_percentage}% ",
     "on-click": "blueman-manager"
-},
-     
-"clock": {
+  },
+
+  "clock": {
     "interval": 1,
     "format": " {:%H:%M | %A, %d %B} ",
     "format-alt": "   {:%H:%M     %Y, %d %B, %A} ",
     "tooltip-format": "|  <tt><small>{calendar}</small></tt>",
     "calendar": {
-      "mode"          : "year",
-      "mode-mon-col"  : 3,
-      "weeks-pos"     : "right",
-      "on-scroll"     : 1,
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
       "format": {
-      "days":       "<span color='#ebdbb2'><b>{}</b></span>",
-      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-      "weekdays":   "<span color='#ebdbb2'><b>{}</b></span>",
-      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                }
-                }
-    },              
-    "actions":  {
-      "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-},
-   
-"cpu": {
-    "format": " {usage}% 󰍛 ",  
+        "days": "<span color='#ebdbb2'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ebdbb2'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+
+  "cpu": {
+    "format": " {usage}% 󰍛 ",
     "interval": 1,
     "on-click-right": "gnome-system-monitor"
-},
-         
-"hyprland/window": {
-    "format": " {} ",
-    "max-length": 60,
-    "separate-outputs": true,
-    "offscreen-css" : true,
-    "offscreen-css-text": "(inactive)",
-     "rewrite": {
-          "(.*) — Mozilla Firefox": " $1",
-          "(.*) - fish": "> [$1]",
-          "(.*) - zsh": "> [$1]",
-          "(.*) - kitty": "> [$1]"
-    }
-},
+  },
 
-"battery": {
-    "format": "  {capacity}% {icon}  ",
+  "battery": {
+    "format": " {capacity}% {icon} ",
     "format-time": " {H} h {M} min ",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "format-charging": "󰂄",
-},
+    "format-charging": ["󰂄"]
+  },
 
-"memory": {
+  "memory": {
     "interval": 10,
     "format": " {percentage}% 󰾆 ",
-    "format-alt-click": "click",
     "tooltip": true,
     "tooltip-format": " {used:0.1f}GB/{total:0.1f}G ",
     "on-click-right": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml --title btop sh -c 'btop'"
-},
+  },
 
-"mpris": {
+  "mpris": {
     "interval": 10,
-	"format": " {title} ",
-	"format-paused": " {title} {status_icon} ",
-	"on-click": "playerctl play-pause",
+    "format": " {title} ",
+    "format-paused": " {title} {status_icon} ",
+    "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "scroll-step": 5.0,
     "smooth-scrolling-threshold": 1,
-	"status-icons": {
-		"paused": "󰐎",
-        "playing": "",
-        "stopped": ""
-	},
-	"max-length": 30
-},
+    "status-icons": {
+      "paused": "󰐎",
+      "playing": "",
+      "stopped": ""
+    },
+    "max-length": 30
+  },
 
-      
-"pulseaudio": {
+  "pulseaudio": {
     "format": " {volume}% {icon} ",
     "format-bluetooth": " 󰂰 {volume}% {icon} ",
     "format-muted": "󰖁",
     "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-    "default": ["", "", "󰕾", ""], 
-    "ignored-sinks": ["Easy Effects Sink"]
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", "󰕾", ""]
     },
     "scroll-step": 5.0,
+    "ignored-sinks": ["Easy Effects Sink"],
     "on-click": "pavucontrol -t 3",
-	"tooltip-format": " {icon} {desc} | {volume}% ",
+    "tooltip-format": " {icon} {desc} | {volume}% ",
     "smooth-scrolling-threshold": 1
-},
-      
-"temperature": {
+  },
+
+  "temperature": {
     "interval": 10,
     "tooltip": true,
     "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
@@ -128,20 +105,39 @@
     "format": " {temperatureC}°C {icon} ",
     "format-icons": ["󰈸"],
     "on-click-right": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml --title nvtop sh -c 'nvtop'"
-},
+  },
 
-"wlr/taskbar": {
-    "format": " {icon} ",
-    "icon-size": 20,
-    "all-outputs": false,
-    "tooltip-format": " {title} ",
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "ignore-list": [
-          "rofi",
-          "org.mozilla.firefox",
-          "alacritty"
-                   ]
+  "network": {
+    "format-wifi": " {signalStrength}%   ",
+    "format-ethernet": " 󰈀  {ipaddr} ",
+    "format-disconnected": " 󰤮  Sem conexão ",
+    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
+    "tooltip-format": "IPv4: {ipaddr}\nIPv6: {ip6addr}",
+    "tooltip-format-wifi": "SSID: {essid}\nSinal: {signalStrength}%\nIP: {ipaddr}",
+    "tooltip-format-disconnected": "Desconectado",
+    "max-length": 20,
+    "interval": 10,
+    "on-click": "nm-connection-editor",
+  },
+
+  "custom/swaync": {
+    "tooltip": true,
+    "format": " {} {icon} ",
+    "format-icons": {
+        "notification": "󰂚",
+        "none": "󰂞",
+        "dnd-notification": "󰪑",
+        "dnd-none": "󰪑",
+        "inhibited-notification": "󰂚",
+        "inhibited-none": "󰂞",
+        "dnd-inhibited-notification": "󰪑",
+        "dnd-inhibited-none": "󰪑"
     },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   }
-
+}

@@ -1,32 +1,33 @@
 {
-"include": "~/dotfiles/.config/waybar/modules",
-"layer": "top",
-"exclusive": true,
-"passthrough": false,
-"position": "top",
-"spacing": 3,
-"fixed-center": true,
-"ipc": true,
-"margin-top": 0,
-"margin-left": 0,
-"margin-right": 0,
-"margin-bottom": 0,
+  "include": "~/dotfiles/.config/waybar/modules",
+  "layer": "top",
+  "exclusive": true,
+  "passthrough": false,
+  "position": "top",
+  "spacing": 3,
+  "fixed-center": true,
+  "ipc": true,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
 
-"modules-left": [
+  "modules-left": [
     "hyprland/workspaces",
     "mpris"
-	],
+  ],
 
-"modules-center": [
+  "modules-center": [
     "clock"
-	], 
+  ],
 
-"modules-right": [
-	"cpu", 
-	"temperature", 
-	"memory",
-	"pulseaudio",
+  "modules-right": [
+    "network",
+    "cpu",
+    "temperature",
+    "memory",
+    "pulseaudio",
     "battery",
-	]
+	"custom/swaync"
+  ]
 }
-
