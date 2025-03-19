@@ -2,6 +2,12 @@
 
 This repository contains my personal dotfiles for my Arch Linux setup with Hyprland. It includes configurations for the terminal, window manager, and development tools.
 
+## Screenshots
+
+![image](https://github.com/antunesluis/dotfiles/blob/main/assets/screenshots/2025-03-19-164756_hyprshot.png)
+![image](https://github.com/antunesluis/dotfiles/blob/main/assets/screenshots/2025-03-19-164655_hyprshot.png)
+![image](https://github.com/antunesluis/dotfiles/blob/main/assets/screenshots/2025-03-19-164749_hyprshot.png)
+
 ## Core Components
 
 ### Hyprland and Arch Linux Setup
