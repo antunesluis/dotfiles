@@ -49,6 +49,12 @@ eval "$(zoxide init zsh)"
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview-window=right:60% --marker='✓' --pointer='▶' --multi"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
 # Load custom aliases
 if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases

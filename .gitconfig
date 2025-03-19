@@ -14,13 +14,6 @@ branch = auto
 interactive = auto
 grep = auto
 
-[alias]
-l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short --color --decorate
-ui = auto
-ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
-pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-st = status
-
 [core]
 excludesfile = ~/.gitignore
 editor = nvim

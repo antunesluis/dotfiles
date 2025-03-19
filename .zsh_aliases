@@ -1,88 +1,77 @@
-###### Comandos de Listagem ############################################
+### Gerais ###
+# Criar e entrar em diretório
+mkcd() { mkdir -p "$1" && cd "$1"; }
 
-# Exibe listagem detalhada com ícones, grupos, e status de git.
+# Backup rápido de arquivos
+bak() { cp "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"; }
+
+# Atualizar sistema
+alias update='sudo pacman -Syu && yay -Syu --devel'  # Combinei os dois comandos
+alias pacup='sudo pacman -Syu'  # Mantive a opção de atualizar só pacman
+
+### Comandos de Listagem ###
+# Listagem detalhada com ícones e git
 alias ll='eza --long --header --group-directories-first --git --group --all'
 
-# Listagem simplificada com ícones.
-alias ls="eza --icons=always --group-directories-first"
+# Listagem simplificada com ícones
+alias ls="eza --icons=always --group-directories-first"  
 
-# Exibe a estrutura de diretórios em árvore colorida.
-alias tree='tree -C'
+# Exibe diretórios em árvore colorida
+alias tree='eza --tree --icons'  # Mudei para usar eza ao invés de tree
 
-# Substitui vi por nvim.
+# Editores
 alias vi='nvim'
+alias vim='nvim'  # Adicionei para consistência
 
-###### Python ###########################################################
+# Visualização de arquivos
+alias cat='bat --style=plain'  # Adicionei --style=plain para saída mais limpa
 
-# Remove arquivos de cache do Python.
+### Git ###
+# Comandos comuns
+alias ga='git add $1'
+alias gc='git commit -m $1'
+alias gd='git diff'
+
+# Log formatado
+alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --date=short --color'
+
+# Push/pull da branch atual
+alias gps='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
+alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
+
+# Status rápido
+alias gst='git status -s'  
+
+# Desfazer último commit mantendo alterações
+alias gundo='git reset --soft HEAD~1'
+
+### Python ###
+# Limpar cache
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
 
-# Desinstala todos os pacotes instalados com pip.
+# Gerenciamento de pacotes
 alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
-
-# Instala dependências a partir de múltiplos arquivos requirements.
 alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
 
-# Ativa o ambiente virtual.
+# Ambiente virtual
 alias activate='source venv/bin/activate'
+alias venv='python -m venv venv && source venv/bin/activate'  # Adicionei criação rápida de venv
 
-
-###### fzf (Busca e Interatividade) #####################################
-
-# Atalho simples para abrir o fzf.
+### fzf (Busca e Interatividade) ###
+# Busca simples
 alias f='fzf'
 
-# Abre múltiplos arquivos no nvim com pré-visualização.
-alias fv='nvim $(fzf -m --preview="bat --color=always {}")'
+# Histórico do shell
+alias fh='eval $(history | cut -c 8- | sort -u | fzf)'  
 
-# Mata processos selecionados via fzf.
-alias fk='kill -9 $(ps -ef | sed 1d | fzf -m | awk "{print \$2}")'
+# Editando arquivos com fzf
+alias fe='nvim $(fzf --preview "bat --style=numbers --color=always {}")'  # Adicionei para edição rápida
 
-# Busca e edita arquivos com pré-visualização.
-alias fe='nvim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
-
-# Edita arquivos controlados pelo Git.
-alias fge='nvim $(git ls-files | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
-
-# Navega para diretórios selecionados.
-alias fd='cd $(find . -type d | fzf)'
-alias fda='cd $(find ~ -type d | fzf)'
-
-# Executa um comando do histórico selecionado com fzf.
-alias fh='eval $(history | fzf --tac | sed "s/ *[0-9]* *//")'
-
-# Lista processos e permite seleção interativa.
-alias fp='ps aux | fzf'
-
-# Troca de branch no Git usando fzf.
-alias fgb='git checkout $(git branch | fzf)'
-
-# Visualiza logs do Git com pré-visualização.
-alias fgl='git log --oneline | fzf --preview "git show --color=always {1}")'
-
-
-###### zoxide (Navegação Rápida) #########################################
+### zoxide (Navegação Rápida) ###
 alias cd='z'
 
-# Adiciona o diretório atual ao banco do zoxide.
+# Gerenciamento de diretórios
 alias za='zoxide add'
-alias cda='zoxide add'
-
-# Aumenta o ranking do diretório atual.
 alias zar='zoxide add -r'
-alias cdar='zoxide add -r'
-
-# Remove um diretório do zoxide.
 alias zrm='zoxide remove'
-alias cdrm='zoxide remove'
-
-# Exibe os 10 diretórios mais acessados.
-alias zt='zoxide query -l | head -n 10'
-alias cdt='zoxide query -l | head -n 10'
-
-###### Funções Personalizadas ###########################################
-
-# Navega para um diretório e executa um comando.
-zrun() {
-    z "$1" && shift && "$@"
-}
+alias j='zoxide query -l | fzf --height 30% --reverse | xargs -I{} cd {}'
