@@ -63,13 +63,7 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
--- Move Lines
-vim.keymap.set("n", "<A-C-j>", "<cmd>m .+1<cr>==", { desc = "Move down", silent = true })
-vim.keymap.set("n", "<A-C-k>", "<cmd>m .-2<cr>==", { desc = "Move up", silent = true })
-vim.keymap.set("i", "<A-C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", silent = true })
-vim.keymap.set("i", "<A-C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
-vim.keymap.set("v", "<A-C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
-vim.keymap.set("v", "<A-C-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true }) -- better indenting
+-- Indent
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
@@ -79,11 +73,11 @@ keymap.set("n", "]b", ":bnext<CR>", { desc = "Next buffer", silent = true })
 
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
-    vim.diagnostic.goto_next()
+  vim.diagnostic.goto_next()
 end, opts)
 
 -- TMUX
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true })
 
-keymap.set('n', '<leader>xx', '<cmd>Telescope diagnostics<cr>')
+keymap.set("n", "<leader>xx", "<cmd>Telescope diagnostics<cr>")

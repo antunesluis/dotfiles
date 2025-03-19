@@ -14,63 +14,62 @@ return {
   -- messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
-
-    opts = {
-      lsp = {
-        progress = {
-          enabled = false,
-        },
-
-        override = {
-          -- override the default lsp markdown formatter with Noice
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          -- override the lsp markdown formatter with Noice
-          ["vim.lsp.util.stylize_markdown"] = true,
-          -- override cmp documentation with Noice (needs the other options to work)
-          ["cmp.entry.get_documentation"] = true,
-        },
-        message = {
-          enabled = true, -- Messages shown by lsp servers
-        },
-      },
-
-      health = {
-        checker = false, -- Disable if you don't want health checks to run
-      },
-
-      presets = {
-        -- you can enable a preset by setting it to true, or a table that will override the preset config
-        -- you can also add custom presets that you can enable/disable with enabled=true
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = true, -- add a border to hover docs and signature help
-      },
-
-      insert = {
+    opts = function(_, opts)
+      table.insert(opts.routes, {
         filter = {
           event = "notify",
           find = "No information available",
         },
-      },
-    },
+        opts = { skip = true },
+      })
+      local focused = true
+      vim.api.nvim_create_autocmd("FocusGained", {
+        callback = function()
+          focused = true
+        end,
+      })
+      vim.api.nvim_create_autocmd("FocusLost", {
+        callback = function()
+          focused = false
+        end,
+      })
+      table.insert(opts.routes, 1, {
+        filter = {
+          cond = function()
+            return not focused
+          end,
+        },
+        view = "notify_send",
+        opts = { stop = false },
+      })
+
+      opts.commands = {
+        all = {
+          -- options for the message history that you get with `:Noice`
+          view = "split",
+          opts = { enter = true, format = "details" },
+          filter = {},
+        },
+      }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
+      })
+
+      opts.presets.lsp_doc_border = true
+    end,
   },
 
   {
     "rcarriga/nvim-notify",
-    lazy = true,
-    keys = {
-      {
-        "<leader>un",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Clear notifications",
-      },
+    opts = {
+      timeout = 5000,
     },
-    opts = { timeout = 1200 },
   },
 
   -- buffer line
@@ -114,6 +113,25 @@ return {
     end,
   },
 
+  -- statusline
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      local LazyVim = require("lazyvim.util")
+      opts.sections.lualine_c[4] = {
+        LazyVim.lualine.pretty_path({
+          length = 0,
+          relative = "cwd",
+          modified_hl = "MatchParen",
+          directory_hl = "",
+          filename_hl = "Bold",
+          modified_sign = "",
+          readonly_icon = " 󰌾 ",
+        }),
+      }
+    end,
+  },
+
   -- animations
   {
     "echasnovski/mini.animate",
@@ -140,6 +158,26 @@ return {
         },
       },
     },
+  },
+
+  --Mason icons
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      -- import mason
+      local mason = require("mason")
+
+      -- enable mason and configure icons
+      mason.setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
+    end,
   },
 
   {
