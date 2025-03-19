@@ -16,15 +16,12 @@ alias ll='eza --long --header --group-directories-first --git --group --all'
 # Listagem simplificada com ícones
 alias ls="eza --icons=always --group-directories-first"  
 
-# Exibe diretórios em árvore colorida
-alias tree='eza --tree --icons'  # Mudei para usar eza ao invés de tree
-
 # Editores
 alias vi='nvim'
-alias vim='nvim'  # Adicionei para consistência
+alias vim='nvim'
 
 # Visualização de arquivos
-alias cat='bat --style=plain'  # Adicionei --style=plain para saída mais limpa
+alias cat='bat --style=plain'
 
 ### Git ###
 # Comandos comuns
@@ -40,7 +37,7 @@ alias gps='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo
 alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
 
 # Status rápido
-alias gst='git status -s'  
+alias gst='git status -s'
 
 # Desfazer último commit mantendo alterações
 alias gundo='git reset --soft HEAD~1'
@@ -55,7 +52,8 @@ alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
 
 # Ambiente virtual
 alias activate='source venv/bin/activate'
-alias venv='python -m venv venv && source venv/bin/activate'  # Adicionei criação rápida de venv
+# Criar ambiente virtual e ativar
+alias venv='python -m venv venv && source venv/bin/activate'
 
 ### fzf (Busca e Interatividade) ###
 # Busca simples
@@ -65,7 +63,7 @@ alias f='fzf'
 alias fh='eval $(history | cut -c 8- | sort -u | fzf)'  
 
 # Editando arquivos com fzf
-alias fe='nvim $(fzf --preview "bat --style=numbers --color=always {}")'  # Adicionei para edição rápida
+alias fe='nvim $(fzf --preview "bat --style=numbers --color=always {}")'
 
 ### zoxide (Navegação Rápida) ###
 alias cd='z'
