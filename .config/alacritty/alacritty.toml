@@ -1,4 +1,5 @@
 
+
 [env]
 TERM="alacritty"
 
@@ -26,8 +27,6 @@ x = 0
 y = 1
 
 [window]
-    blur = true
-    opacity = 0.85
     decorations = "Full"
     dynamic_title = false
     decorations_theme_variant = "Dark"
