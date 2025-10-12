@@ -77,7 +77,6 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-
 export PATH="$HOME/.ghcup/bin:$PATH"
 
 [ -f "/home/antunesluis/.ghcup/env" ] && . "/home/antunesluis/.ghcup/env" # ghcup-env

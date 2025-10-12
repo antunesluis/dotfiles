@@ -25,12 +25,12 @@ return {
 				},
 			},
 			formatters_by_ft = {
-				javascript = { "biome-check" },
-				typescript = { "biome-check" },
-				javascriptreact = { "biome-check" },
-				typescriptreact = { "biome-check" },
-				css = { "biome-check" },
-				html = { "biome-check" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
 				svelte = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
@@ -55,13 +55,13 @@ return {
 				"--stdin-filepath",
 				"$FILENAME",
 				"--tab-width",
-				"4",
+				"2",
 				"--use-tabs",
 				"false",
 			},
 		}
 		conform.formatters.shfmt = {
-			prepend_args = { "-i", "4" },
+			prepend_args = { "-i", "2" },
 		}
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
