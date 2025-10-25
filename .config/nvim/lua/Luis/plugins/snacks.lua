@@ -112,15 +112,52 @@ return {
 				enabled = true,
 				sections = {
 					{ section = "header" },
-					{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-					{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+					{ icon = "ï„œ ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+					{ icon = "ï…› ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+					{ icon = "ï¼ ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 					{ section = "startup" },
 				},
 			},
 		},
 		-- NOTE: Keymaps
 		keys = {
+			{
+				"<leader>bb",
+				function()
+					-- Volta para o buffer anterior (Ãºltimo visitado)
+					vim.cmd("buffer #")
+				end,
+				desc = "Go to Previous Buffer",
+			},
+			{
+				"<leader>bp",
+				function()
+					-- PrÃ³ximo buffer na lista
+					vim.cmd("bnext")
+				end,
+				desc = "Go to Next Buffer",
+			},
+			{
+				"\\\\",
+				function()
+					require("snacks").picker.buffers({ layout = "select" })
+				end,
+				desc = "List All Buffers",
+			},
+			{
+				"<leader>bd",
+				function()
+					require("snacks").bufdelete()
+				end,
+				desc = "Delete Current Buffer",
+			},
+			{
+				"<leader>bD",
+				function()
+					require("snacks").bufdelete.all()
+				end,
+				desc = "Delete All Buffers",
+			},
 			{
 				"<leader>lg",
 				function()

@@ -298,15 +298,6 @@ return {
 					end
 				end, { "i", "s" }),
 
-				["<CR>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						local entry = cmp.get_selected_entry()
-						confirm(entry)
-					else
-						fallback()
-					end
-				end, { "i", "s" }),
-
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
