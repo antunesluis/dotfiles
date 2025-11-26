@@ -32,7 +32,8 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			automatic_enable = false,
+			-- automatic_enable = false,
+			automatic_enable = true,
 			-- servers for mason to install
 			ensure_installed = {
 				"lua_ls",
@@ -46,6 +47,7 @@ return {
 				"emmet_language_server",
 				-- "eslint",
 				"marksman",
+				"hls",
 			},
 		})
 
@@ -58,6 +60,7 @@ return {
 				"clangd",
 				"denols",
 				-- { 'eslint_d', version = '13.1.2' },
+				"fourmolu",
 			},
 
 			-- NOTE: mason BREAKING Change! Removed setup_handlers

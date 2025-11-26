@@ -229,6 +229,19 @@ return {
 				},
 			},
 		})
+
+		vim.lsp.config("hls", {
+			filetypes = { "haskell", "lhaskell", "cabal" },
+			settings = {
+				haskell = {
+					formattingProvider = "fourmolu", -- ou "ormolu", "stylish-haskell"
+					checkProject = true,
+					maxCompletions = 40,
+				},
+			},
+			single_file_support = true,
+		})
+		vim.lsp.enable("hls")
 		vim.lsp.enable("gopls")
 	end,
 }

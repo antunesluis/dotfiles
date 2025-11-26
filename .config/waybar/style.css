@@ -2,15 +2,15 @@
   font-family: "JetBrains Mono";
   font-weight: bold;
   min-height: 0;
-  font-size: 15px; /* Reduzi um pouco o tamanho da fonte */
+  font-size: 15px;
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-  padding: 1px;
+  padding: 0.5px;
 }
 
 window#waybar {
   background-color: rgba(0, 0, 0, 0.85);
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   min-height: 32px; /* Reduzi a altura da barra */
   padding: 2px 6px;
 }
@@ -41,10 +41,20 @@ tooltip label {
   color: #ccc;
 }
 
-#clock, #cpu, #memory, #mpris, #network, #pulseaudio, #battery, #temperature, #workspaces, #custom-menu, #custom-swaync {
+#clock,
+#cpu,
+#memory,
+#mpris,
+#network,
+#pulseaudio,
+#battery,
+#temperature,
+#workspaces,
+#custom-menu,
+#custom-swaync {
   border-radius: 10px;
   color: #ccc;
-  padding: 2px 4px; /* Reduzi o padding dos módulos */
+  padding: 2px 4px;
   margin: 3px;
 }
 
@@ -76,4 +86,3 @@ tooltip label {
   padding: 2px 4px;
   margin: 3px;
 }
-

@@ -36,8 +36,8 @@ dynamic_padding = true
 title = "Alacritty"
 dimensions = { columns = 128, lines = 38 }
 padding = { x = 5, y = 3}
-# blur = true
-# opacity = 0.90
+blur = true
+opacity = 0.95
 
 [scrolling]
 history = 10000

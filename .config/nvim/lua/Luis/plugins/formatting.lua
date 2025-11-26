@@ -32,7 +32,7 @@ return {
 				css = { "prettier" },
 				html = { "prettier" },
 				svelte = { "prettier" },
-				json = { "prettier" },
+				json = { "biome" },
 				yaml = { "prettier" },
 				graphql = { "prettier" },
 				liquid = { "prettier" },
@@ -40,6 +40,7 @@ return {
 				-- python = { "black" },
 				markdown = { "prettier", "markdown-toc" },
 				-- ["markdown.mdx"] = { "prettier", "markdownlint", "markdown-toc" },
+				haskell = { "fourmolu" },
 			},
 
 			format_on_save = {
