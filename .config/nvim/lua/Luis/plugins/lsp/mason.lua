@@ -47,7 +47,7 @@ return {
 				"emmet_language_server",
 				-- "eslint",
 				"marksman",
-				"hls",
+				-- "hls",
 			},
 		})
 
@@ -60,7 +60,7 @@ return {
 				"clangd",
 				"denols",
 				-- { 'eslint_d', version = '13.1.2' },
-				"fourmolu",
+				-- "fourmolu",
 			},
 
 			-- NOTE: mason BREAKING Change! Removed setup_handlers

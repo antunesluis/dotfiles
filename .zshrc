@@ -79,3 +79,4 @@ source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-s
 source /home/antunesluis/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
+source /usr/share/nvm/init-nvm.sh
