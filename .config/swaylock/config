@@ -1,0 +1,53 @@
+# Imagem de fundo
+image=/home/antunesluis/dotfiles/.config/wallpapers/15.png
+scaling=fill
+
+# Desabilitar blur (performance)
+effect-blur=0x0
+
+# Indicador
+indicator
+indicator-radius=120
+indicator-thickness=12
+indicator-idle-visible
+
+# Cores estilo Gruvbox (igual hyprlock)
+inside-color=00000088
+ring-color=ebdbb280
+line-color=00000000
+text-color=ebdbb2
+separator-color=00000000
+
+# Estados
+inside-wrong-color=cc241d88
+ring-wrong-color=fb493499
+text-wrong-color=ebdbb2
+line-wrong-color=00000000
+
+inside-ver-color=45858888
+ring-ver-color=83a59899
+text-ver-color=ebdbb2
+line-ver-color=00000000
+
+inside-clear-color=fabd2f88
+ring-clear-color=d7992199
+text-clear-color=ebdbb2
+line-clear-color=00000000
+
+# Texto
+font=JetBrains Mono
+font-size=18
+
+# Mostrar informações
+show-failed-attempts
+datestr=%d/%m/%Y
+timestr=%H:%M
+
+# Layout
+bs-hl-color=fb4934
+key-hl-color=b8bb26
+caps-lock-bs-hl-color=fb4934
+caps-lock-key-hl-color=b8bb26
+
+# Ignorar senha vazia
+ignore-empty-password
