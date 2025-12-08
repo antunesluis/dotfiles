@@ -10,20 +10,20 @@
   },
 
   "bluetooth": {
-    "format": "  ",
-    "format-disabled": " 󰂳 ",
-    "format-connected": " 󰂱 {num_connections} ",
-    "tooltip-format": "  {device_alias} ",
-    "tooltip-format-connected": " {device_enumerate} ",
+    "format": "",
+    "format-disabled": "󰂳",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": " {device_alias}",
+    "tooltip-format-connected": "{device_enumerate}",
     "tooltip": true,
-    "tooltip-format-enumerate-connected": "  {device_alias} 󰂄{device_battery_percentage}% ",
+    "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
     "on-click": "blueman-manager"
   },
 
   "clock": {
     "interval": 1,
-    "format": " {:%H:%M | %A, %d %B} ",
-    "format-alt": "   {:%H:%M     %Y, %d %B, %A} ",
+    "format": "{:%H:%M | %A, %d %B}",
+    "format-alt": " {:%H:%M     %Y, %d %B, %A}",
     "tooltip-format": "|  <tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
@@ -40,30 +40,30 @@
   },
 
   "cpu": {
-    "format": " {usage}% 󰍛 ",
+    "format": "{usage}% 󰍛",
     "interval": 1,
     "on-click-right": "gnome-system-monitor"
   },
 
   "battery": {
-    "format": " {capacity}% {icon} ",
-    "format-time": " {H} h {M} min ",
+    "format": "{capacity}% {icon}",
+    "format-time": "{H} h {M} min",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-charging": ["󰂄"]
   },
 
   "memory": {
     "interval": 10,
-    "format": " {percentage}% 󰾆 ",
+    "format": "{percentage}% 󰾆",
     "tooltip": true,
-    "tooltip-format": " {used:0.1f}GB/{total:0.1f}G ",
+    "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
     "on-click-right": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml --title btop sh -c 'btop'"
   },
 
   "mpris": {
     "interval": 10,
-    "format": " {title} ",
-    "format-paused": " {title} {status_icon} ",
+    "format": "{title}",
+    "format-paused": "{title} {status_icon}",
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "scroll-step": 5.0,
@@ -77,8 +77,8 @@
   },
 
   "pulseaudio": {
-    "format": " {volume}% {icon} ",
-    "format-bluetooth": " 󰂰 {volume}% {icon} ",
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "󰂰 {volume}% {icon}",
     "format-muted": "󰖁",
     "format-icons": {
       "headphone": "",
@@ -92,7 +92,7 @@
     "scroll-step": 5.0,
     "ignored-sinks": ["Easy Effects Sink"],
     "on-click": "pavucontrol -t 3",
-    "tooltip-format": " {icon} {desc} | {volume}% ",
+    "tooltip-format": "{icon} {desc} | {volume}%",
     "smooth-scrolling-threshold": 1
   },
 
@@ -101,23 +101,23 @@
     "tooltip": true,
     "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
     "critical-threshold": 82,
-    "format-critical": " {temperatureC}°C {icon} ",
-    "format": " {temperatureC}°C {icon} ",
+    "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
     "format-icons": ["󰈸"],
     "on-click-right": "alacritty -c ~/dotfiles/.config/alacritty/alacritty.toml --title nvtop sh -c 'nvtop'"
   },
 
   "network": {
-    "format-wifi": " {signalStrength}%   ",
-    "format-ethernet": " 󰈀  {ipaddr} ",
-    "format-disconnected": " 󰤮  Sem conexão ",
+    "format-wifi": "{signalStrength}% ",
+    "format-ethernet": "󰈀 {ipaddr}",
+    "format-disconnected": "󰤮 Sem conexão",
     "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
     "tooltip-format": "IPv4: {ipaddr}\nIPv6: {ip6addr}",
     "tooltip-format-wifi": "SSID: {essid}\nSinal: {signalStrength}%\nIP: {ipaddr}",
     "tooltip-format-disconnected": "Desconectado",
     "max-length": 20,
     "interval": 10,
-    "on-click": "nm-connection-editor",
+    "on-click": "nm-connection-editor"
   },
 
   "custom/swaync": {

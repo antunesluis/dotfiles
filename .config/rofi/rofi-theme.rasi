@@ -1,14 +1,16 @@
 /**
- * Modern Dark Theme para Rofi
+ * Modern Dark Theme para Rofi - Versão Refinada
  */
 * {
+    /* Paleta de cores */
     dark0: #121212;
     dark1: #1a1a1a;
     dark2: #242424;
     dark3: #2e2e2e;
 
     accent: #5294e2;
-    accent-alt: #3d7ecc;
+    accent-alt: #4285d9;
+    accent-hover: #6ba4e8;
 
     text-primary: #f0f0f0;
     text-secondary: #bbbbbb;
@@ -19,6 +21,7 @@
 
     background-color: transparent;
     transparent: rgba(18,18,18,0);
+    overlay: rgba(18,18,18,0.95);
 
     highlight: underline bold #f0f0f0;
 }
@@ -26,73 +29,103 @@
 window {
     location: center;
     anchor: center;
-    border-radius: 12px;
-    height: 560px;
-    width: 600px;
-    background-color: @transparent;
+    border-radius: 16px;
+    height: 580px;
+    width: 650px;
+    background-color: @overlay;
     spacing: 0;
     children: [mainbox];
     orientation: horizontal;
+    border: 2px;
+    border-color: @dark3;
 }
 
 mainbox {
     spacing: 0;
     children: [inputbar, message, listview];
+    background-color: @dark0;
+    border-radius: 16px;
 }
 
 message {
-    padding: 10px;
-    border: 0px 2px 2px 2px;
-    border-color: @dark0;
+    padding: 12px 16px;
+    border: 0px 0px 2px 0px;
+    border-color: @dark3;
     background-color: @dark2;
+    text-color: @text-secondary;
 }
 
 inputbar {
     color: @text-primary;
-    padding: 14px;
-    background-color: @dark0;
-    border-color: @dark0;
-    border: 1px;
-    border-radius: 12px 12px 0px 0px;
+    padding: 16px 20px;
+    background-color: @dark1;
+    border: 0px 0px 2px 0px;
+    border-color: @dark3;
+    border-radius: 16px 16px 0px 0px;
+    spacing: 8px;
 }
 
 entry, prompt, case-indicator {
     text-font: inherit;
     text-color: inherit;
+    background-color: transparent;
 }
 
 prompt {
-    margin: 0px 1em 0em 0em;
+    margin: 0px;
+    padding: 0px 12px 0px 0px;
     text-color: @accent;
+    font: "JetBrains Mono Bold 12";
+}
+
+entry {
+    placeholder: "Buscar...";
+    placeholder-color: @text-disabled;
 }
 
 listview {
-    padding: 8px;
-    border-radius: 0px 0px 12px 12px;
-    border: 2px 2px 2px 2px;
-    border-color: @dark0;
+    padding: 12px;
+    border-radius: 0px 0px 16px 16px;
+    border: 0px;
     background-color: @dark0;
     dynamic: false;
+    // scrollbar: true;
+    spacing: 4px;
+    lines: 8;
 }
 
+// scrollbar {
+//     width: 4px;
+//     border: 0;
+//     handle-color: @accent;
+//     handle-width: 4px;
+//     padding: 0 4px;
+//     background-color: @dark2;
+//     border-radius: 2px;
+// }
+
 element {
-    padding: 8px;
+    padding: 10px 12px;
     vertical-align: 0.5;
-    border-radius: 8px;
-    color: @text-secondary;
+    border-radius: 10px;
+    background-color: transparent;
     text-color: @text-primary;
-    background-color: @dark1;
-    margin: 2px 0;
+    spacing: 12px;
+}
+
+element.normal.normal {
+    background-color: transparent;
+    text-color: @text-primary;
 }
 
 element.normal.active {
     background-color: @dark2;
-    text-color: @accent;
+    text-color: @accent-hover;
 }
 
 element.normal.urgent {
-    background-color: @urgent-alt;
-    text-color: @text-primary;
+    background-color: rgba(229, 57, 53, 0.15);
+    text-color: @urgent;
 }
 
 element.selected.normal {
@@ -111,28 +144,62 @@ element.selected.urgent {
 }
 
 element.alternate.normal {
-    background-color: @transparent;
+    background-color: transparent;
 }
 
-element-text, element-icon {
-    size: 3ch;
-    margin: 0 10 0 0;
-    vertical-align: 0.5;
+element.alternate.active {
+    background-color: transparent;
+    text-color: @accent-hover;
+}
+
+element-text {
     background-color: inherit;
     text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 1.2em;
+    background-color: inherit;
+    vertical-align: 0.5;
+    margin: 0 12px 0 0;
 }
 
 button {
-    padding: 6px;
+    padding: 8px 16px;
     color: @text-secondary;
     horizontal-align: 0.5;
-    border: 2px 0px 2px 2px;
-    border-radius: 10px;
+    border: 2px;
     border-color: @dark3;
+    border-radius: 8px;
+    background-color: @dark1;
 }
 
 button.selected.normal {
-    border: 2px 0px 2px 2px;
+    border: 2px;
     border-color: @accent;
     text-color: @accent;
+    background-color: rgba(82, 148, 226, 0.1);
+}
+
+/* Modo específico para elementos */
+mode-switcher {
+    spacing: 8px;
+    padding: 12px;
+    background-color: @dark1;
+    border: 2px 0px 0px 0px;
+    border-color: @dark3;
+}
+
+/* Estilo para textbox (usado em mensagens) */
+textbox {
+    padding: 8px 12px;
+    text-color: @text-secondary;
+    background-color: transparent;
+}
+
+/* Estilo para num-filtered-rows e num-rows */
+num-filtered-rows, num-rows {
+    text-color: @text-disabled;
+    background-color: transparent;
 }
