@@ -59,6 +59,7 @@ return {
 				"pylint",
 				"clangd",
 				"denols",
+				"eslint_d",
 				-- { 'eslint_d', version = '13.1.2' },
 				-- "fourmolu",
 			},

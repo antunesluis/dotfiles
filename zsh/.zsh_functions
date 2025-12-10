@@ -1,0 +1,17 @@
+# Criar e entrar em diretório
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Backup rápido de arquivos
+bak() {
+    cp "$1" "$1.bak-$(date +%Y%m%d-%H%M%S)"
+}
+
+# Vim-like yank to clipboard (Wayland)
+vi-yank-xclip() {
+    zle vi-yank
+    echo "$CUTBUFFER" | wl-copy -n
+}
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip

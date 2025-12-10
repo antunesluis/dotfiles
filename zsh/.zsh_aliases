@@ -1,0 +1,54 @@
+# ---- System ----
+
+alias update='sudo pacman -Syu && yay -Syu --devel'
+alias pacup='sudo pacman -Syu'
+
+# ---- Eza (file listing) ----
+
+alias ls="eza --icons=always --group-directories-first"
+alias ll='eza --long --header --group-directories-first --git --group --all'
+
+# ---- Neovim ----
+
+alias vi='nvim'
+alias vim='nvim'
+
+# ---- Bat ----
+
+alias cat='bat --style=plain'
+
+# ---- Git ----
+
+alias ga='git add'
+alias gc='git commit -m'
+alias gd='git diff'
+alias gst='git status -s'
+alias gundo='git reset --soft HEAD~1'
+alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --date=short --color'
+alias gps='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
+alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
+
+# ---- Python ----
+
+alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
+alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
+alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
+alias activate='source venv/bin/activate'
+alias venv='python -m venv venv && source venv/bin/activate'
+
+# ---- FZF ----
+
+alias f='fzf'
+alias fh='eval $(history | cut -c 8- | sort -u | fzf)'
+alias fe='nvim $(fzf --preview "bat --style=numbers --color=always {}")'
+
+# ---- Zoxide ----
+
+alias cd='z'
+alias za='zoxide add'
+alias zar='zoxide add -r'
+alias zrm='zoxide remove'
+
+# ---- NVIDIA ----
+
+alias nvidia-run='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only'

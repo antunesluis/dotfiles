@@ -1,55 +1,20 @@
-*.o
-\#*#
-*#
-.#*
-.*~
+# Tmux plugins (TPM)
+tmux/.config/tmux/plugins/*
+!tmux/.config/tmux/plugins/.gitkeep
+
+# Nvim
+nvim/.config/nvim/lazy-lock.json
+nvim/.config/nvim/.luarc.json
+
+# Temporários e backups
+*.swp
+*.swo
 *~
 .DS_Store
-*.sw[po]
-tags
-TAGS
-.svn
-*.dSYM
-*.log
-*.dvi
-*.aux
-*.elc
-.zshrc.local
-.python-version
-samples
 .netrwhist
-.bundle
-/vendor/bundle
-Gemfile.lock
-node_modules
-bower_components
-fishd.*
-.env
-.nvim.lua
 
-node_modules/
-.config-git-tools/
-package-lock.json
-package.json
+# Logs
+*.log
 
-# Vim
-Session.vim
-.vim/bundle/
-.vimrc_sample
-.vim/ftdetect/Dockerfile.vim
-.vim/syntax/Dockerfile.vim
-.vim/snippets/
-.luarc.json
-.neoconf.json
-nvim/lua/config/env.lua 
-config/nvim/sessions
-
-# Local .terraform directories
-**/.terraform/*
-
-# Crash log files
-crash.log
-
-
-# Tmux
-.config/tmux/plugins/
+# Cache
+.cache/
