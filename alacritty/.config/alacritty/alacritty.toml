@@ -1,13 +1,31 @@
-[general]
-import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
-
 [env]
-TERM="xterm-256color"
+TERM = "xterm-256color"
+
+[window]
+decorations = "None"
+dynamic_title = true
+decorations_theme_variant = "Dark"
+dynamic_padding = true
+title = "Alacritty"
+startup_mode = "Windowed"
+# blur = true
+# opacity = 0.95
+
+[window.class]
+instance = "Alacritty"
+general = "Alacritty"
+
+[window.dimensions]
+columns = 128
+lines = 38
+
+[window.padding]
+x = 5
+y = 3
 
 [font]
-size = 13.5
+size = 14
 
-# USE A VERSÃO MONO - CRÍTICO PARA ÍCONES FUNCIONAREM
 [font.normal]
 family = "Iosevka Nerd Font"
 style = "Regular"
@@ -28,28 +46,50 @@ style = "Bold Italic"
 x = 0
 y = 1
 
-[window]
-decorations = "Full"
-dynamic_title = false
-decorations_theme_variant = "Dark"
-class = { instance="Alacritty", general="Alacritty"}
-dynamic_padding = true
-title = "Alacritty"
-dimensions = { columns = 128, lines = 38 }
-padding = { x = 5, y = 3}
-# blur = true
-opacity = 0.90
-
 [scrolling]
 history = 10000
 multiplier = 3
 
 [selection]
-save_to_clipboard=true
+save_to_clipboard = true
+
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
 
 [cursor]
-style={shape="Beam", blinking="Always"}
-blink_interval=450
+blink_interval = 450
+blink_timeout = 0
+unfocused_hollow = true
+thickness = 0.15
 
 [terminal]
-shell = "/bin/zsh"
+shell = { program = "/bin/zsh", args = ["-l"] }
+
+[general]
+import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"

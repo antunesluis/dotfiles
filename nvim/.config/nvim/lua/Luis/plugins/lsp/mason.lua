@@ -62,6 +62,8 @@ return {
 				"eslint_d",
 				-- { 'eslint_d', version = '13.1.2' },
 				-- "fourmolu",
+				"biome",
+				"markdown-toc",
 			},
 
 			-- NOTE: mason BREAKING Change! Removed setup_handlers

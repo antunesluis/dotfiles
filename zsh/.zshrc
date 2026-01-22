@@ -39,10 +39,12 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 # NVM (Node Version Manager)
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # --- FZF Configuration ----
 
@@ -64,10 +66,10 @@ export FZF_TMUX_OPTS=" -p90%,70% "
 
 # ---- Tool Initialization ----
 
-# fzf key bindings e completion
-if command -v fzf &> /dev/null; then
-    source <(fzf --zsh)
-fi
+# if command -v fzf &> /dev/null; then
+#   source /usr/share/fzf/key-bindings.zsh
+#   source /usr/share/fzf/completion.zsh
+# fi
 
 if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
