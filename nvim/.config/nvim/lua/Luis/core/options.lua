@@ -52,3 +52,6 @@ vim.opt.isfname:append("@-@")
 
 -- EditorConfig support
 vim.g.editorconfig = true
+
+-- Session options (fix auto-session warning)
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

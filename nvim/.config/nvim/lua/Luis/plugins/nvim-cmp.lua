@@ -6,7 +6,6 @@ return {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
 		"f3fora/cmp-spell",
-		"zbirenbaum/copilot-cmp",
 		{
 			"L3MON4D3/LuaSnip",
 			-- follow latest release.
@@ -32,34 +31,32 @@ return {
 		end
 
 		local lsp_kinds = {
-			Copilot = " ",
-			Class = "󰠱 ",
-			Color = "󰏘 ",
-			Constant = "󰏿 ",
-			Constructor = "󰊄 ",
-			Enum = "󰘦 ",
-			EnumMember = "󰘦 ",
-			Event = "󰘨 ",
-			Field = "󰇽 ",
-			File = "󰈙 ",
-			Folder = "󰉋 ",
-			Function = "󰊕 ",
-			Interface = "󰕘 ",
-			Keyword = "󰌋 ",
-			Method = "󰆧 ",
-			Module = "󰏗 ",
-			Operator = "󰆕 ",
-			Property = "󰜢 ",
-			Reference = "󰈇 ",
-			Snippet = "󰘦 ",
-			Struct = "󰙅 ",
-			Text = "󰉿 ",
-			TypeParameter = "󰊄 ",
-			Unit = "󰑭 ",
-			Value = "󰎠 ",
-			Variable = "󰀫 ",
+			Class = " ",
+			Color = " ",
+			Constant = " ",
+			Constructor = " ",
+			Enum = " ",
+			EnumMember = " ",
+			Event = " ",
+			Field = " ",
+			File = " ",
+			Folder = " ",
+			Function = " ",
+			Interface = " ",
+			Keyword = " ",
+			Method = " ",
+			Module = " ",
+			Operator = " ",
+			Property = " ",
+			Reference = " ",
+			Snippet = " ",
+			Struct = " ",
+			Text = " ",
+			TypeParameter = " ",
+			Unit = " ",
+			Value = " ",
+			Variable = " ",
 		}
-
 		-- Returns the current column number.
 		local column = function()
 			local _line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -204,6 +201,21 @@ return {
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
 
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+				{ name = "cmdline" },
+				{
+					name = "buffer",
+					option = {
+						max_item_count = 30,
+						keyword_length = 3,
+					},
+				},
+			}),
+		})
+
 		cmp.setup({
 			experimental = {
 				-- HACK: experimenting with ghost text
@@ -227,39 +239,13 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			-- autocompletion sources with proper priority for Copilot
+			-- autocompletion sources
 			sources = cmp.config.sources({
-				-- High priority sources
-				{
-					name = "copilot",
-					priority = 1000,
-					group_index = 1,
-				},
-				{
-					name = "nvim_lsp",
-					priority = 800,
-					group_index = 1,
-				},
-				{
-					name = "luasnip",
-					priority = 750,
-					group_index = 1,
-				},
-			}, {
-				-- Lower priority sources
-				{
-					name = "buffer",
-					priority = 500,
-					group_index = 2,
-				},
-				{
-					name = "path",
-					priority = 300,
-					group_index = 2,
-				},
-			}, {
-				-- Additional sources
-				{ name = "lazydev", group_index = 0 },
+				{ name = "luasnip" }, -- snippets
+				{ name = "lazydev" },
+				{ name = "nvim_lsp" },
+				{ name = "buffer" }, -- text within current buffer
+				{ name = "path" }, -- file system paths
 				{ name = "tailwindcss-colorizer-cmp" },
 				{
 					name = "spell", -- for markdown spellchecks completions
@@ -271,9 +257,22 @@ return {
 					},
 				},
 			}),
+			-- mapping = cmp.mapping.preset.insert({
+			--     ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+			--     ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+			--     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+			--     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+			--     ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+			--     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
+			--     ["<CR>"] = cmp.mapping.confirm({ select = false }),
+			-- }),
 
-			-- Custom mappings for better Copilot integration
+			-- NOTE: ! Experimenting with Customized Mappings ! --
 			mapping = cmp.mapping.preset.insert({
+				-- ['<BS>'] = cmp.mapping(function(_fallback)
+				--     smart_bs()
+				-- end, { 'i', 's' }),
+
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 				["<C-d>"] = cmp.mapping(function()
 					cmp.close_docs()
@@ -281,7 +280,6 @@ return {
 
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
-
 				["<C-j>"] = cmp.mapping(select_next_item),
 				["<C-k>"] = cmp.mapping(select_prev_item),
 				["<C-n>"] = cmp.mapping(select_next_item),
@@ -290,6 +288,15 @@ return {
 				["<Up>"] = cmp.mapping(select_prev_item),
 
 				["<C-y>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						local entry = cmp.get_selected_entry()
+						confirm(entry)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+
+				["<CR>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						local entry = cmp.get_selected_entry()
 						confirm(entry)
@@ -330,34 +337,24 @@ return {
 					end
 				end, { "i", "s" }),
 			}),
-
-			-- Enhanced formatting with Copilot priority
+			-- setup lspkind for vscode pictograms in autocompletion dropdown menu
 			formatting = {
 				format = function(entry, vim_item)
-					-- Special handling for Copilot
-					if entry.source.name == "copilot" then
-						vim_item.kind = "  Copilot"
-						vim_item.kind_hl_group = "CmpItemKindCopilot"
-						vim_item.menu = "[Copilot]"
-					else
-						-- Add custom lsp_kinds icons
-						vim_item.kind = string.format("%s %s", lsp_kinds[vim_item.kind] or "", vim_item.kind)
+					-- Add custom lsp_kinds icons
+					vim_item.kind = string.format("%s %s", lsp_kinds[vim_item.kind] or "", vim_item.kind)
 
-						-- add menu tags (e.g., [Buffer], [LSP])
-						vim_item.menu = ({
-							buffer = "[Buffer]",
-							nvim_lsp = "[LSP]",
-							luasnip = "[LuaSnip]",
-							nvim_lua = "[Lua]",
-							latex_symbols = "[LaTeX]",
-							path = "[Path]",
-							copilot = "[Copilot]",
-						})[entry.source.name]
-					end
+					-- add menu tags (e.g., [Buffer], [LSP])
+					vim_item.menu = ({
+						buffer = "[Buffer]",
+						nvim_lsp = "[LSP]",
+						luasnip = "[LuaSnip]",
+						nvim_lua = "[Lua]",
+						latex_symbols = "[LaTeX]",
+					})[entry.source.name]
 
 					-- use lspkind and tailwindcss-colorizer-cmp for additional formatting
 					vim_item = lspkind.cmp_format({
-						maxwidth = 30,
+						maxwidth = 25,
 						ellipsis_char = "...",
 					})(entry, vim_item)
 
@@ -367,42 +364,44 @@ return {
 
 					return vim_item
 				end,
+				-- format = lspkind.cmp_format({
+				--         maxwidth = 30,
+				--         ellipsis_char = "...",
+				--         before = require("tailwindcss-colorizer-cmp").formatter
+				-- }),
+				-- format = require("tailwindcss-colorizer-cmp").formatter
 			},
 		})
-
-		-- Set up highlight groups for Copilot
-		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 		-- NOTE: Added Ghost text stuff
 		-- Only show ghost text at word boundaries, not inside keywords. Based on idea
 		-- from: https://github.com/hrsh7th/nvim-cmp/issues/2035#issuecomment-2347186210
 
-		local config = require("cmp.config")
-		local toggle_ghost_text = function()
-			if vim.api.nvim_get_mode().mode ~= "i" then
-				return
-			end
-
-			local cursor_column = vim.fn.col(".")
-			local current_line_contents = vim.fn.getline(".")
-			local character_after_cursor = current_line_contents:sub(cursor_column, cursor_column)
-
-			local should_enable_ghost_text = character_after_cursor == ""
-				or vim.fn.match(character_after_cursor, [[\k]]) == -1
-
-			local current = config.get().experimental.ghost_text
-			if current ~= should_enable_ghost_text then
-				config.set_global({
-					experimental = {
-						ghost_text = should_enable_ghost_text,
-					},
-				})
-			end
-		end
-
-		vim.api.nvim_create_autocmd({ "InsertEnter", "CursorMovedI" }, {
-			callback = toggle_ghost_text,
-		})
+		-- local config = require('cmp.config')
+		-- local toggle_ghost_text = function()
+		--     if vim.api.nvim_get_mode().mode ~= 'i' then
+		--         return
+		--     end
+		--
+		--     local cursor_column = vim.fn.col('.')
+		--     local current_line_contents = vim.fn.getline('.')
+		--     local character_after_cursor = current_line_contents:sub(cursor_column, cursor_column)
+		--
+		--     local should_enable_ghost_text = character_after_cursor == '' or vim.fn.match(character_after_cursor, [[\k]]) == -1
+		--
+		--     local current = config.get().experimental.ghost_text
+		--     if current ~= should_enable_ghost_text then
+		--         config.set_global({
+		--             experimental = {
+		--                 ghost_text = should_enable_ghost_text,
+		--             },
+		--         })
+		--     end
+		-- end
+		--
+		-- vim.api.nvim_create_autocmd({ 'InsertEnter', 'CursorMovedI' }, {
+		--     callback = toggle_ghost_text,
+		-- })
 		-- ! Ghost text stuff ! --
 	end,
 }
