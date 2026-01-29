@@ -24,6 +24,7 @@ return {
 					"tsx",
 					"go",
 					"yaml",
+					"toml",
 					"html",
 					"css",
 					"python",

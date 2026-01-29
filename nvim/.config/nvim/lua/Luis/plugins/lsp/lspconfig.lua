@@ -103,44 +103,25 @@ return {
 			},
 		})
 
-		-- emmet_language_server
-		vim.lsp.config("emmet_language_server", {
-			filetypes = {
-				"css",
-				"eruby",
-				"html",
-				"javascript",
-				"javascriptreact",
-				"less",
-				"sass",
-				"scss",
-				"pug",
-				"typescriptreact",
-			},
-			init_options = {
-				includeLanguages = {},
-				excludeLanguages = {},
-				extensionsPath = {},
-				preferences = {},
-				showAbbreviationSuggestions = true,
-				showExpandedAbbreviation = "always",
-				showSuggestionsAsSnippets = false,
-				syntaxProfiles = {},
-				variables = {},
-			},
-		})
-
-		-- emmet_ls
-		vim.lsp.config("emmet_ls", {
-			filetypes = {
-				"html",
-				"typescriptreact",
-				"javascriptreact",
-				"css",
-				"sass",
-				"scss",
-				"less",
-				"svelte",
+		vim.lsp.config("pyright", {
+			settings = {
+				pyright = {
+					-- Using default settings is usually good
+					disableOrganizeImports = false,
+				},
+				python = {
+					analysis = {
+						typeCheckingMode = "basic", -- "off", "basic", or "strict"
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+						diagnosticMode = "workspace",
+						-- Ignore common false positives
+						diagnosticSeverityOverrides = {
+							reportUnusedImport = "warning",
+							reportUnusedVariable = "warning",
+						},
+					},
+				},
 			},
 		})
 
@@ -195,11 +176,11 @@ return {
 		})
 
 		vim.lsp.enable("lua_ls")
-		vim.lsp.enable("emmet_language_server")
-		vim.lsp.enable("emmet_ls")
+		vim.lsp.enable("pyright")
 		vim.lsp.enable("ts_ls")
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("astro")
 		vim.lsp.enable("tailwindcss")
+		vim.lsp.enable("taplo")
 	end,
 }

@@ -42,8 +42,8 @@ return {
 				"tailwindcss",
 				"gopls",
 				"astro",
-				"emmet_ls",
-				"emmet_language_server",
+				"pyright",
+				"taplo",
 				-- "eslint",
 				"marksman",
 			},
@@ -53,10 +53,12 @@ return {
 			ensure_installed = {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"pylint",
+				"black",
+				"ruff",
+				"pyright",
 				"clangd",
 				"denols",
+				"taplo",
 				-- { 'eslint_d', version = '13.1.2' },
 			},
 
