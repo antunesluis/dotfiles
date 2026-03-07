@@ -13,7 +13,6 @@ return {
 			python = { "ruff" },
 		}
 
-		-- Configuração melhorada do eslint_d
 		lint.linters.eslint_d = vim.tbl_extend("force", lint.linters.eslint_d, {
 			args = {
 				"--no-warn-ignored",
@@ -25,9 +24,7 @@ return {
 					return vim.api.nvim_buf_get_name(0)
 				end,
 			},
-
 			condition = function(ctx)
-				-- Só roda se tiver .eslintrc ou eslint.config.js
 				local root_dir = vim.fs.dirname(vim.fs.find({
 					".eslintrc",
 					".eslintrc.js",

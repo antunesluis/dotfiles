@@ -10,10 +10,8 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
-				-- Buffer local mappings
 				local opts = { buffer = ev.buf, silent = true }
 
-				-- Keymaps
 				opts.desc = "Show LSP references"
 				vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
 
@@ -55,15 +53,13 @@ return {
 			end,
 		})
 
-		-- Define sign icons for each severity
 		local signs = {
-			[vim.diagnostic.severity.ERROR] = " ",
-			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
 			[vim.diagnostic.severity.HINT] = "󰠠 ",
-			[vim.diagnostic.severity.INFO] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
 		}
 
-		-- Set diagnostic config
 		vim.diagnostic.config({
 			signs = {
 				text = signs,
@@ -73,16 +69,13 @@ return {
 			update_in_insert = false,
 		})
 
-		-- Setup servers
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- Global LSP settings (applied to all servers)
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
 
-		-- Configure and enable LSP servers
 		-- lua_ls
 		vim.lsp.config("lua_ls", {
 			settings = {
@@ -103,19 +96,18 @@ return {
 			},
 		})
 
+		-- pyright
 		vim.lsp.config("pyright", {
 			settings = {
 				pyright = {
-					-- Using default settings is usually good
 					disableOrganizeImports = false,
 				},
 				python = {
 					analysis = {
-						typeCheckingMode = "basic", -- "off", "basic", or "strict"
+						typeCheckingMode = "basic",
 						autoSearchPaths = true,
 						useLibraryCodeForTypes = true,
 						diagnosticMode = "workspace",
-						-- Ignore common false positives
 						diagnosticSeverityOverrides = {
 							reportUnusedImport = "warning",
 							reportUnusedVariable = "warning",
@@ -125,7 +117,7 @@ return {
 			},
 		})
 
-		-- ts_ls (TypeScript/JavaScript)
+		-- ts_ls
 		vim.lsp.config("ts_ls", {
 			filetypes = {
 				"javascript",
@@ -155,7 +147,7 @@ return {
 			},
 		})
 
-		-- tailwind
+		-- tailwindcss
 		vim.lsp.config("tailwindcss", {
 			filetypes = {
 				"html",
@@ -175,6 +167,36 @@ return {
 			},
 		})
 
+		-- clangd (C/C++)
+		vim.lsp.config("clangd", {
+			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--completion-style=detailed",
+			},
+		})
+
+		-- denols (Deno)
+		vim.lsp.config("denols", {
+			root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }),
+			single_file_support = false,
+			settings = {
+				deno = {
+					enable = true,
+					suggest = {
+						imports = {
+							hosts = {
+								["https://deno.land"] = true,
+							},
+						},
+					},
+				},
+			},
+		})
+
+		-- Enable all servers
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("pyright")
 		vim.lsp.enable("ts_ls")
@@ -182,5 +204,8 @@ return {
 		vim.lsp.enable("astro")
 		vim.lsp.enable("tailwindcss")
 		vim.lsp.enable("taplo")
+		vim.lsp.enable("marksman")
+		vim.lsp.enable("clangd")
+		vim.lsp.enable("denols")
 	end,
 }
