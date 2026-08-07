@@ -64,6 +64,7 @@ unfocused_hollow = true
 thickness = 0.15
 
 [terminal]
+osc52 = "CopyPaste"
 shell = { program = "/bin/zsh", args = ["-l"] }
 
 [general]

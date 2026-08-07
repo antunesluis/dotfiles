@@ -2,17 +2,26 @@
 
 ## Project Structure & Module Organization
 
-This is a GNU Stow-based dotfiles repository for an Arch Linux/Hyprland workstation. Each top-level package mirrors the target home directory layout. For example, `nvim/.config/nvim` links to `~/.config/nvim`, `zsh/.zshrc` links to `~/.zshrc`, and `git/.gitconfig` links to `~/.gitconfig`.
+This is a GNU Stow-based dotfiles repository. Each top-level package mirrors the target home directory layout. For example, `nvim/.config/nvim` links to `~/.config/nvim`, `zsh/.zshrc` links to `~/.zshrc`, and `git/.gitconfig` links to `~/.gitconfig`.
 
-Configuration packages live in directories such as `hypr`, `waybar`, `rofi`, `tmux`, `alacritty`, `ghostty`, `swaync`, `swaylock`, `wlogout`, `wofi`, `yazi`, and `nvim`. Helper commands are in `scripts/`. Static media is under `assets/screenshots/` and `wallpapers/.config/wallpapers/`.
+Primary development packages are `nvim`, `zsh`, `tmux`, `ghostty`, `git`, `claude`, `codex`, and `agents`. Desktop packages such as `hypr`, `waybar`, `rofi`, `alacritty`, `swaync`, `swaylock`, `wlogout`, `wofi`, and `yazi` are still part of the repo but may be inactive on the current machine. Helper commands are in `scripts/`. Static media is under `assets/screenshots/` and `wallpapers/.config/wallpapers/`.
+
+Agent memory is split by scope:
+
+- `agents/AGENTS.md` stows to `~/AGENTS.md` for general agent tools.
+- `codex/.codex/AGENTS.md` stows to `~/.codex/AGENTS.md` for Codex global memory.
+- `claude/.claude/CLAUDE.md` stows to `~/.claude/CLAUDE.md` and imports `~/AGENTS.md`.
+- This root `AGENTS.md` is repository-specific guidance for agents working inside this dotfiles repo.
 
 ## Build, Test, and Development Commands
 
-- `./install.sh`: clones the repository to `~/dotfiles` if missing, then stows packages. Review changes before running on a new machine.
 - `stow -nv */`: performs a dry run and reports symlink operations without modifying files.
 - `stow -v */`: applies symlinks for all top-level packages.
-- `bash -n install.sh scripts/*`: checks shell scripts for parse errors.
-- `shellcheck install.sh scripts/*`: runs stronger shell linting when ShellCheck is installed.
+- `stow -nv <package>`: dry-runs one package, useful for new agent packages.
+- `bash -n scripts/*`: checks shell scripts for parse errors.
+- `shellcheck scripts/*`: runs stronger shell linting when ShellCheck is installed.
+- `jq empty <file.json>`: validates JSON configs.
+- `python3 -c 'import tomllib; tomllib.load(open("<file.toml>", "rb"))'`: validates TOML configs.
 
 There is no project build step or automated application test suite.
 
@@ -24,7 +33,7 @@ Shell scripts should use `#!/bin/bash`, quote variable expansions, and prefer cl
 
 ## Testing Guidelines
 
-Before committing, run `stow -nv */` to catch conflicts and `bash -n install.sh scripts/*` for script syntax. For UI-related changes, reload the relevant component manually, such as Hyprland, Waybar, Rofi, or Wlogout, and update screenshots only when they document a visible change.
+Before committing, run focused validation for the packages changed. Use `stow -nv <package>` to catch Stow conflicts and `bash -n scripts/*` for script syntax. For UI-related changes, reload the relevant component manually and update screenshots only when they document a visible change.
 
 ## Commit & Pull Request Guidelines
 
@@ -34,4 +43,4 @@ Pull requests should describe the affected package, list manual validation comma
 
 ## Security & Configuration Tips
 
-Do not commit secrets, host-specific tokens, private SSH material, or generated caches. Keep local lock files and plugin downloads out of version control unless they are intentionally tracked.
+Do not commit secrets, host-specific tokens, private SSH material, generated caches, auth files, history files, local SQLite state, or logs. Keep local lock files and plugin downloads out of version control unless they are intentionally tracked.

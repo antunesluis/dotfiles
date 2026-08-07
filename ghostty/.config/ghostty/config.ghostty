@@ -42,6 +42,8 @@ mouse-hide-while-typing = true
 
 # Copia o texto selecionado para o clipboard do sistema
 copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
 
 # O Ghostty mede o histórico em bytes, não em linhas
 scrollback-limit = 50000000

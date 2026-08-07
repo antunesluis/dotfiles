@@ -1,5 +1,13 @@
 {
   "model": "sonnet",
+  "language": "Portuguese",
+  "preferredNotifChannel": "ghostty",
+  "workflowKeywordTriggerEnabled": false,
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "defaultMode": "default",
     "allow": [
@@ -14,6 +22,10 @@
       "Bash(pwd:*)"
     ],
     "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.codex/auth.json)",
+      "Read(~/.claude.json)",
+      "Read(**/.env*)",
       "Bash(rm -rf:*)",
       "Bash(sudo:*)",
       "Bash(chmod:*)",
