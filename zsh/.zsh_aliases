@@ -3,6 +3,15 @@
 alias update='sudo pacman -Syu && yay -Syu --devel'
 alias pacup='sudo pacman -Syu'
 
+# ---- OpenCode ----
+
+alias oc="opencode"
+
+# ---- OpenCode ----
+
+alias cx="codex"
+alias cxr="codex resume"
+
 # ---- Eza (file listing) ----
 
 alias ls="eza --icons=always --group-directories-first"
@@ -27,6 +36,8 @@ alias gundo='git reset --soft HEAD~1'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --date=short --color'
 alias gps='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
 alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")'
+
+alias lg='lazygit'
 
 # ---- Python ----
 

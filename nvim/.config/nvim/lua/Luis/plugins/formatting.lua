@@ -39,6 +39,8 @@ return {
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "black" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
 				markdown = { "prettier", "markdown-toc" },
 				-- ["markdown.mdx"] = { "prettier", "markdownlint", "markdown-toc" },
 				-- haskell = { "fourmolu" },
@@ -56,10 +58,6 @@ return {
 			args = {
 				"--stdin-filepath",
 				"$FILENAME",
-				"--tab-width",
-				"2",
-				"--use-tabs",
-				"false",
 			},
 		}
 

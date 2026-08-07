@@ -16,7 +16,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"onsails/lspkind.nvim",
 		"roobert/tailwindcss-colorizer-cmp.nvim",
-		"zbirenbaum/copilot-cmp",
 		"folke/lazydev.nvim",
 	},
 	config = function()
@@ -34,7 +33,6 @@ return {
 			Color = " ",
 			Constant = " ",
 			Constructor = " ",
-			Copilot = "", -- ícone do Copilot
 			Enum = " ",
 			EnumMember = " ",
 			Event = " ",
@@ -223,9 +221,8 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "copilot", priority = 1000 },
 				{ name = "luasnip", priority = 750 },
-				{ name = "lazydev", priority = 700 }, -- fix: dependência agora declarada
+				{ name = "lazydev", priority = 700 },
 				{ name = "nvim_lsp", priority = 650 },
 				{ name = "buffer", priority = 500 },
 				{ name = "path", priority = 400 },
@@ -309,7 +306,6 @@ return {
 					vim_item.kind = string.format("%s %s", lsp_kinds[vim_item.kind] or "", vim_item.kind)
 
 					vim_item.menu = ({
-						copilot = "[Copilot]",
 						buffer = "[Buffer]",
 						nvim_lsp = "[LSP]",
 						luasnip = "[LuaSnip]",
@@ -320,7 +316,6 @@ return {
 					vim_item = lspkind.cmp_format({
 						maxwidth = 25,
 						ellipsis_char = "...",
-						symbol_map = { Copilot = "" },
 					})(entry, vim_item)
 
 					if entry.source.name == "nvim_lsp" then

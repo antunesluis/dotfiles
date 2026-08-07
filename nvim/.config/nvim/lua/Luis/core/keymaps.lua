@@ -31,9 +31,11 @@ vim.keymap.set("v", "<leader>P", '"_dp', { desc = "Paste without affecting clipb
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 
+-- prevent x delete from registering when next paste
+vim.keymap.set("n", "x", '"_x', { desc = "Delete char without yanking" })
+
 -- Delete without yanking
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
-vim.keymap.set("n", "x", '"_x', { desc = "Delete char without yanking" })
 
 -- Convenient Escape alternatives
 vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Alternative Escape key" })
@@ -44,9 +46,6 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Unmaps Q in normal mode
 vim.keymap.set("n", "Q", "<nop>")
-
--- prevent x delete from registering when next paste
-vim.keymap.set("n", "x", '"_x', opts)
 
 -- Replace the word cursor is on globally
 vim.keymap.set(

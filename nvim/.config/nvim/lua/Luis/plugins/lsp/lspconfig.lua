@@ -56,7 +56,7 @@ return {
 		local signs = {
 			[vim.diagnostic.severity.ERROR] = " ",
 			[vim.diagnostic.severity.WARN] = " ",
-			[vim.diagnostic.severity.HINT] = "󰠠 ",
+			[vim.diagnostic.severity.HINT] = "󰌵 ",
 			[vim.diagnostic.severity.INFO] = " ",
 		}
 
@@ -180,7 +180,7 @@ return {
 
 		-- denols (Deno)
 		vim.lsp.config("denols", {
-			root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }),
+			root_markers = { "deno.json", "deno.jsonc" },
 			single_file_support = false,
 			settings = {
 				deno = {
@@ -200,6 +200,8 @@ return {
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("pyright")
 		vim.lsp.enable("ts_ls")
+		vim.lsp.enable("html")
+		vim.lsp.enable("cssls")
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("astro")
 		vim.lsp.enable("tailwindcss")

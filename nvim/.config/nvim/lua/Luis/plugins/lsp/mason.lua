@@ -51,6 +51,7 @@ return {
 				"biome",
 				"eslint_d",
 				"taplo",
+				"shfmt",
 			},
 		})
 	end,

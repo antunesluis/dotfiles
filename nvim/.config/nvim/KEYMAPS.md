@@ -199,15 +199,6 @@
 
 ---
 
-## GitHub Copilot
-
-- `Alt+]` → Próxima sugestão do Copilot
-- `Alt+[` → Sugestão anterior do Copilot
-
-**Nota:** Aceitar sugestões é feito através do nvim-cmp com `Tab` ou `Ctrl+y`
-
----
-
 ## Mini.nvim Plugins
 
 ### Surround (mini.surround)

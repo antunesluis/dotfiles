@@ -23,18 +23,19 @@ return {
 				function()
 					return vim.api.nvim_buf_get_name(0)
 				end,
-			},
-			condition = function(ctx)
-				local root_dir = vim.fs.dirname(vim.fs.find({
-					".eslintrc",
-					".eslintrc.js",
-					".eslintrc.json",
-					"eslint.config.js",
-					"package.json",
-				}, { upward = true })[1])
-				return root_dir ~= nil
-			end,
-		})
+				},
+				condition = function(ctx)
+					local filename = ctx.filename or vim.api.nvim_buf_get_name(0)
+					local config = vim.fs.find({
+						".eslintrc",
+						".eslintrc.js",
+						".eslintrc.json",
+						"eslint.config.js",
+						"package.json",
+					}, { path = filename, upward = true })[1]
+					return config ~= nil
+				end,
+			})
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 

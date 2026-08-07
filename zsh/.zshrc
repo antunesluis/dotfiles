@@ -18,8 +18,9 @@ source $ZSH/oh-my-zsh.sh
 export LANG=pt_BR.UTF-8
 export EDITOR="nvim"
 export VISUAL="nvim"
+export TERMINAL="ghostty"
 
-[[ "$TERM" == "xterm" ]] && export TERM=alacritty
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-ghostty
 
 # ---- PATH Configurations ----
 
@@ -62,7 +63,12 @@ export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | 
 # fzf preview for tmux
 export FZF_TMUX_OPTS=" -p90%,70% "
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # ---- Tool Initialization ----
 
@@ -86,7 +92,16 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -f ~/.zsh_functions ] && source ~/.zsh_functions
 
-# ---- Plugins ----
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
 
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# source ~/p4-guide/p4dev-python-venv/bin/activate
+# export PATH="~/p4-guide/bin:~/p4-guide/behavioral-model/tools:/usr/local/bin:$PATH"
+# export P4_EXTRA_SUDO_OPTS="PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python"
