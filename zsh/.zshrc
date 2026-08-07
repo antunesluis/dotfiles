@@ -9,7 +9,6 @@ plugins=(
     golang
     zsh-syntax-highlighting
     zsh-autosuggestions
-    archlinux
     ssh-agent
 )
 
@@ -33,18 +32,21 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH="$JAVA_HOME/bin:$PATH"
 
-# Go PATH
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-
-# Haskell PATH
-export PATH="$HOME/.ghcup/bin:$PATH"
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-
 # NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/.config/nvm.sh" ] && \. "$NVM_DIR/.config/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Dart/Flutter
+export PATH="$HOME/flutter/bin:$PATH"
+
+# Android Studio
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"
+
+# NVM
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -107,3 +109,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # source ~/p4-guide/p4dev-python-venv/bin/activate
 # export PATH="~/p4-guide/bin:~/p4-guide/behavioral-model/tools:/usr/local/bin:$PATH"
 # export P4_EXTRA_SUDO_OPTS="PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+export PATH="$JAVA_HOME/bin:$PATH"
