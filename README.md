@@ -1,39 +1,48 @@
-# Dot Files
+# Dotfiles
 
-This repository contains my personal dotfiles for my Arch Linux setup with Hyprland. It includes configurations for the terminal, window manager, and development tools.
+Personal GNU Stow dotfiles for my development environment and desktop tooling.
 
-## Screenshots
+Each top-level directory is a Stow package that mirrors the target path from `$HOME`. For example, `nvim/.config/nvim` maps to `~/.config/nvim`, `zsh/.zshrc` maps to `~/.zshrc`, and `git/.gitconfig` maps to `~/.gitconfig`.
 
-![image](https://github.com/antunesluis/dotfiles/blob/main/assets/screenshots/2025-03-19-164756_hyprshot.png)
-![image](https://github.com/antunesluis/dotfiles/blob/main/assets/screenshots/2025-03-19-164655_hyprshot.png)
-![image](https://github.com/antunesluis/dotfiles/blob/main/assets/screenshots/2025-03-19-164749_hyprshot.png)
+## Main Setup
 
-## Core Components
+- **Ghostty** - primary terminal
+- **Tmux** - terminal multiplexer
+- **Neovim** - Lua-based editor configuration
+- **Zsh** - shell with Oh My Zsh, Starship, FZF, Zoxide, Bat, and Eza
+- **Git** - global Git defaults
+- **Claude Code and Codex** - agent settings and shared memory
 
-### Hyprland and Arch Linux Setup
+Desktop packages such as Hyprland, Waybar, Rofi, Wlogout, Wofi, Yazi, Alacritty, and related assets are still tracked, but some may be inactive depending on the current machine.
 
-- **Hyprland** – Wayland window manager
-- **Hyprpaper** – Wallpaper manager
-- **Hyprlock** – Lock screen
-- **Hyprshot** – Screenshot tool
-- **Hypridle** – Idle management daemon
-- **Rofi** – Application launcher
-- **Waybar** – Status bar
-- **Wlogout** – Logout menu
-- **Swaync** – Notification center
+## Packages
 
-### Development Tools
+- `agents` - global `~/AGENTS.md` memory for coding agents
+- `claude` - `~/.claude` settings and Claude memory
+- `codex` - `~/.codex` config and Codex global `AGENTS.md`
+- `ghostty` - Ghostty terminal config
+- `git` - Git config
+- `nvim` - Neovim config
+- `tmux` - tmux config and plugin setup
+- `zsh` - shell config, aliases, and functions
+- `scripts` - helper commands
 
-- **LazyVim** – Preconfigured Neovim setup
-- **Alacritty** – GPU-accelerated terminal emulator
-- **Tmux** – Terminal multiplexer
+## Usage
 
-### Terminal and Utilities
+Dry-run one package:
 
-- **Zsh** – Shell
-- **Oh My Zsh** – Zsh framework
-- **Starship** – Customizable shell prompt
-- **Fzf** – Fuzzy finder
-- **Zoxide** – Smart directory jumper
-- **Bat** – Cat alternative with syntax highlighting
-- **Eza** – Modern ls replacement
+```bash
+stow -nv <package>
+```
+
+Apply one package:
+
+```bash
+stow -v <package>
+```
+
+Apply all packages:
+
+```bash
+stow -v */
+```
