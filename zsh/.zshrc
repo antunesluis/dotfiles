@@ -1,5 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
+fpath=("$HOME/.zsh/completions" $fpath)
+
 plugins=(
     git
     docker

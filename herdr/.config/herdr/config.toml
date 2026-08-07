@@ -1,0 +1,58 @@
+# Herdr configuration
+# Docs: https://herdr.dev/docs/configuration/
+
+# Skip first-run onboarding prompts after this dotfile is stowed.
+onboarding = false
+
+[theme]
+name = "kanagawa"
+
+[terminal]
+default_shell = "/bin/zsh"
+shell_mode = "login"
+new_cwd = "follow"
+
+[update]
+channel = "stable"
+version_check = true
+manifest_check = true
+
+[keys]
+prefix = "ctrl+b"
+
+# Fast access to the tools used most often in this dotfiles setup.
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+width = "90%"
+height = "90%"
+
+[ui]
+sidebar_start_collapsed = false
+sidebar_collapsed_mode = "compact"
+copy_on_select = true
+mouse_capture = true
+pane_borders = true
+pane_scrollbars = true
+pane_gaps = true
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "spaces"
+accent = "cyan"
+
+[ui.toast]
+delivery = "terminal"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
+
+[ui.toast.clipboard]
+enabled = true
+position = "bottom-center"
+
+[ui.sound]
+enabled = false
+
+[session]
+resume_agents_on_restore = true

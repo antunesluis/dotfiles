@@ -44,3 +44,13 @@ claude/.claude/backups/
 claude/.claude/projects/
 claude/.claude/todos/
 claude/.claude/statsig/
+
+# Herdr local state
+herdr/.config/herdr/*.sock
+herdr/.config/herdr/cache/
+herdr/.config/herdr/state/
+
+# OpenCode local dependencies and state
+opencode/.config/opencode/node_modules/
+opencode/.config/opencode/package-lock.json
+opencode/.config/opencode/bun.lock

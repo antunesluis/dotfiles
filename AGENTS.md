@@ -4,7 +4,7 @@
 
 This is a GNU Stow-based dotfiles repository. Each top-level package mirrors the target home directory layout. For example, `nvim/.config/nvim` links to `~/.config/nvim`, `zsh/.zshrc` links to `~/.zshrc`, and `git/.gitconfig` links to `~/.gitconfig`.
 
-Primary development packages are `nvim`, `zsh`, `tmux`, `ghostty`, `git`, `claude`, `codex`, and `agents`. Desktop packages such as `hypr`, `waybar`, `rofi`, `alacritty`, `swaync`, `swaylock`, `wlogout`, `wofi`, and `yazi` are still part of the repo but may be inactive on the current machine. Helper commands are in `scripts/`. Static media is under `assets/screenshots/` and `wallpapers/.config/wallpapers/`.
+Primary development packages are `nvim`, `zsh`, `tmux`, `ghostty`, `git`, `claude`, `codex`, `opencode`, `herdr`, and `agents`. Desktop packages such as `hypr`, `waybar`, `rofi`, `alacritty`, `swaync`, `swaylock`, `wlogout`, `wofi`, and `yazi` are still part of the repo but may be inactive on the current machine. Helper commands are in `scripts/`. Static media is under `assets/screenshots/` and `wallpapers/.config/wallpapers/`.
 
 Agent memory is split by scope:
 

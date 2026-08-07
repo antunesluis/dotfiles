@@ -11,7 +11,7 @@ Each top-level directory is a Stow package that mirrors the target path from `$H
 - **Neovim** - Lua-based editor configuration
 - **Zsh** - shell with Oh My Zsh, Starship, FZF, Zoxide, Bat, and Eza
 - **Git** - global Git defaults
-- **Claude Code and Codex** - agent settings and shared memory
+- **Claude Code, Codex, OpenCode, and Herdr** - agent settings, shared memory, and agent multiplexing
 
 Desktop packages such as Hyprland, Waybar, Rofi, Wlogout, Wofi, Yazi, Alacritty, and related assets are still tracked, but some may be inactive depending on the current machine.
 
@@ -20,6 +20,8 @@ Desktop packages such as Hyprland, Waybar, Rofi, Wlogout, Wofi, Yazi, Alacritty,
 - `agents` - global `~/AGENTS.md` memory for coding agents
 - `claude` - `~/.claude` settings and Claude memory
 - `codex` - `~/.codex` config and Codex global `AGENTS.md`
+- `opencode` - OpenCode plugins and integration files
+- `herdr` - `~/.config/herdr` config for the terminal agent multiplexer
 - `ghostty` - Ghostty terminal config
 - `git` - Git config
 - `nvim` - Neovim config

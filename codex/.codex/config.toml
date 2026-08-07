@@ -7,6 +7,9 @@ model_reasoning_effort = "high"
 [tui]
 theme = "gruvbox-dark"
 
+[features]
+hooks = true
+
 [projects."/home/antunesluis"]
 trust_level = "trusted"
 
