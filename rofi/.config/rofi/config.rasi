@@ -15,4 +15,4 @@ configuration {
     dpi: 120;
 }
 
-@theme "/home/antunesluis/.config/rofi/rofi-theme.rasi"
+@theme "~/.config/rofi/rofi-theme.rasi"
