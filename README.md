@@ -18,7 +18,7 @@ Desktop packages such as Hyprland, Waybar, Rofi, Wlogout, Wofi, Yazi, Alacritty,
 ## Packages
 
 - `agents` - global `~/AGENTS.md` memory for coding agents
-- `claude` - `~/.claude` settings and Claude memory
+- `claude` - `~/.claude` settings, memory, rules, and skills (stow with `--no-folding`)
 - `codex` - `~/.codex` config and Codex global `AGENTS.md`
 - `opencode` - OpenCode plugins and integration files
 - `herdr` - `~/.config/herdr` config for the terminal agent multiplexer
@@ -48,3 +48,25 @@ Apply all packages:
 ```bash
 stow -v */
 ```
+
+### The `claude` package needs `--no-folding`
+
+```bash
+stow -v --no-folding claude
+```
+
+`~/.claude` is not a config directory the way `~/.config/nvim` is: Claude Code
+keeps its runtime state there (`sessions/`, `projects/`, `telemetry/`, …) next to
+`~/.claude/.credentials.json`, which holds an auth token.
+
+Without `--no-folding`, Stow replaces a missing `~/.claude` with a symlink to
+this repo, and Claude Code then writes that state — credentials included —
+straight into git. Folding is fine for every other package, where the whole
+directory really is config.
+
+With `--no-folding`, Stow links the five tracked files individually
+(`CLAUDE.md`, `settings.json`, `hooks/`, `rules/`, `skills/`) and leaves the
+runtime state as real files outside the repo.
+
+Because `stow -v */` above does *not* pass the flag, run the `claude` package
+separately on a new machine.

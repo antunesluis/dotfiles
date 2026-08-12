@@ -11,12 +11,15 @@ Agent memory is split by scope:
 - `agents/AGENTS.md` stows to `~/AGENTS.md` for general agent tools.
 - `codex/.codex/AGENTS.md` stows to `~/.codex/AGENTS.md` for Codex global memory.
 - `claude/.claude/CLAUDE.md` stows to `~/.claude/CLAUDE.md` and imports `~/AGENTS.md`.
+- `claude/.claude/rules/` stows to `~/.claude/rules/` for always-on global instructions.
+- `claude/.claude/skills/` stows to `~/.claude/skills/` for custom skills.
 - This root `AGENTS.md` is repository-specific guidance for agents working inside this dotfiles repo.
 
 ## Build, Test, and Development Commands
 
 - `stow -nv */`: performs a dry run and reports symlink operations without modifying files.
-- `stow -v */`: applies symlinks for all top-level packages.
+- `stow -v */`: applies symlinks for all top-level packages. Excludes `claude`, see below.
+- `stow -v --no-folding claude`: the `claude` package must never fold. `~/.claude` mixes tracked config with Claude Code runtime state and `~/.claude/.credentials.json`; if Stow folds the directory into this repo, that state and the auth token get written inside git. Run it separately from `stow -v */`.
 - `stow -nv <package>`: dry-runs one package, useful for new agent packages.
 - `bash -n scripts/*`: checks shell scripts for parse errors.
 - `shellcheck scripts/*`: runs stronger shell linting when ShellCheck is installed.

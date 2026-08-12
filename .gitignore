@@ -37,13 +37,36 @@ codex/.codex/shell_snapshots/
 codex/.codex/.tmp/
 
 # Claude Code local state and machine-specific settings
+#
+# The claude package MUST be stowed with --no-folding (see README). ~/.claude
+# holds runtime state and ~/.claude/.credentials.json holds an auth token; if
+# stow ever folds the directory into this repo, Claude Code writes all of that
+# inside git. The entries below are defence in depth for exactly that mistake:
+# only hooks/, rules/, skills/, CLAUDE.md and settings.json belong in here.
 claude/.claude.json
 claude/.claude/settings.local.json
+
+# Credentials -- never version.
+claude/.claude/.credentials.json
+
 claude/.claude/cache/
 claude/.claude/backups/
 claude/.claude/projects/
 claude/.claude/todos/
 claude/.claude/statsig/
+claude/.claude/sessions/
+claude/.claude/session-env/
+claude/.claude/shell-snapshots/
+claude/.claude/file-history/
+claude/.claude/paste-cache/
+claude/.claude/image-cache/
+claude/.claude/downloads/
+claude/.claude/telemetry/
+claude/.claude/daemon/
+claude/.claude/plugins/
+claude/.claude/jobs/
+claude/.claude/tasks/
+claude/.claude/.last-cleanup
 
 # Herdr local state
 # ~/.config/herdr is a directory symlink into this repo, so the herdr server
