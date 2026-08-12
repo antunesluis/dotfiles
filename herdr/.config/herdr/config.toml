@@ -1,5 +1,9 @@
 # Herdr configuration
-# Docs: https://herdr.dev/docs/configuration/
+# Docs: https://herdr.dev/docs/config-reference/
+#
+# Only non-default values live here -- everything else follows herdr's built-in
+# defaults. Each entry carries the default it overrides, so the intent stays
+# obvious. Validate changes with `herdr config check`.
 
 # Skip first-run onboarding prompts after this dotfile is stowed.
 onboarding = false
@@ -9,16 +13,16 @@ name = "kanagawa"
 
 [terminal]
 default_shell = "/bin/zsh"
+# default "auto" -- force a login shell so .zprofile/.zlogin run in every pane.
 shell_mode = "login"
-new_cwd = "follow"
 
-[update]
-channel = "stable"
-version_check = true
-manifest_check = true
+[worktrees]
+# default "~/.herdr/worktrees" -- keep agent worktrees beside the projects.
+directory = "~/Projects/.worktrees"
 
 [keys]
-prefix = "ctrl+b"
+# default "ctrl+b" -- matches the tmux prefix in tmux/.config/tmux/tmux.conf.
+prefix = "ctrl+s"
 
 # Fast access to the tools used most often in this dotfiles setup.
 [[keys.command]]
@@ -28,31 +32,17 @@ command = "lazygit"
 width = "90%"
 height = "90%"
 
+[[keys.command]]
+key = "prefix+alt+t"
+type = "popup"
+command = "htop"
+width = "80%"
+height = "80%"
+
 [ui]
-sidebar_start_collapsed = false
-sidebar_collapsed_mode = "compact"
-copy_on_select = true
-mouse_capture = true
-pane_borders = true
-pane_scrollbars = true
-pane_gaps = true
+# default false -- label each pane border with the agent running in it.
 show_agent_labels_on_pane_borders = true
-agent_panel_sort = "spaces"
-accent = "cyan"
 
 [ui.toast]
+# default "off" -- render agent notifications inside the terminal.
 delivery = "terminal"
-delay_seconds = 1
-
-[ui.toast.herdr]
-position = "bottom-right"
-
-[ui.toast.clipboard]
-enabled = true
-position = "bottom-center"
-
-[ui.sound]
-enabled = false
-
-[session]
-resume_agents_on_restore = true

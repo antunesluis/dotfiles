@@ -46,9 +46,14 @@ claude/.claude/todos/
 claude/.claude/statsig/
 
 # Herdr local state
+# ~/.config/herdr is a directory symlink into this repo, so the herdr server
+# writes its runtime state here. session.json holds absolute per-machine paths
+# and would conflict on every sync between machines.
 herdr/.config/herdr/*.sock
 herdr/.config/herdr/cache/
 herdr/.config/herdr/state/
+herdr/.config/herdr/session.json
+herdr/.config/herdr/.plugins.lock
 
 # OpenCode local dependencies and state
 opencode/.config/opencode/node_modules/

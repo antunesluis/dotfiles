@@ -12,6 +12,10 @@ plugins=(
     ssh-agent
 )
 
+# O oh-my-zsh reescreve o título do terminal no precmd e no
+# preexec. Desligado para o hook em "Título do terminal" mandar.
+DISABLE_AUTO_TITLE="true"
+
 source $ZSH/oh-my-zsh.sh
 
 # ---- Locale and Editor Settings ----
@@ -85,9 +89,14 @@ if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
 fi
 
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
+# ---- Título do terminal ----
+
+# Mostra o caminho completo (com ~) na barra de título, e só isso.
+# O título automático do Ghostty está desligado via
+# `shell-integration-features = ...,no-title` no config.ghostty.
+_set_window_title() { print -Pn '\e]2;%~\a' }
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _set_window_title
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
@@ -115,3 +124,13 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
 export PATH="$JAVA_HOME/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"
+
+# zoxide precisa ser o ÚLTIMO init do arquivo: inicializado antes do sdkman ele
+# dispara o aviso do `zoxide doctor` em todo shell novo (visível em cada pane do
+# herdr, que usa login shell). Só define funções/hooks, não mexe no PATH, então
+# ficar depois do sdkman não afeta a ordem de PATH que o sdkman exige.
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
