@@ -15,7 +15,7 @@ theme = Kanagawa Wave
 # Janela
 # ============================================================
 
-window-decoration = none
+# window-decoration = none
 
 window-padding-x = 5
 window-padding-y = 3
@@ -26,6 +26,17 @@ window-height = 38
 
 # Mantém a interface GTK escura
 window-theme = dark
+
+# ============================================================
+# Barra de título
+# ============================================================
+
+# Uma linha só no centro: o título (definido pelo zsh como o
+# caminho completo). Sem subtítulo, que antes repetia o caminho.
+window-subtitle = false
+
+# Esconde o botão "Nova aba / Split" do canto esquerdo
+gtk-custom-css = custom.css
 
 # ============================================================
 # Cursor
@@ -56,8 +67,11 @@ command = /bin/zsh
 
 shell-integration = detect
 
-# Melhora integração com sudo, SSH, título e terminfo
-shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+# Melhora integração com sudo, SSH e terminfo.
+# `no-title`: o título automático do Ghostty (só as 3 últimas
+# pastas) fica desligado — quem define o título é o hook no
+# .zshrc, que mostra o caminho completo.
+shell-integration-features = cursor,sudo,no-title,ssh-env,ssh-terminfo,path
 
 # ============================================================
 # Comportamento
@@ -65,11 +79,14 @@ shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 
 confirm-close-surface = true
 window-step-resize = true
-window-subtitle = working-directory
 
 # Realce discreto quando usar splits nativos do Ghostty
 unfocused-split-opacity = 0.85
 split-divider-color = #54546d
+
+###############################################################
+
+# background-opacity = 0.96
 
 
 # ============================================================
@@ -79,7 +96,10 @@ split-divider-color = #54546d
 # Notifica quando um comando com mais de 10 segundos terminar
 # e o Ghostty não estiver em foco
 notify-on-command-finish = unfocused
-notify-on-command-finish-action = notify
+# Atenção: isto é uma lista de flags, não um valor único.
+# Escrever só `notify` NÃO desliga o `bell` (que vem ligado por
+# padrão) — troque por `no-bell,notify` se quiser sem o bell.
+notify-on-command-finish-action = bell,notify
 notify-on-command-finish-after = 10s
 
 # Remove a notificação visual para cada texto copiado,

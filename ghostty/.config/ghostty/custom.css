@@ -1,0 +1,63 @@
+/* ============================================================
+ * CSS customizado da interface GTK do Ghostty
+ * Carregado via `gtk-custom-css` no config.ghostty
+ *
+ * Para inspecionar/ajustar ao vivo:
+ *   env GTK_DEBUG=interactive ghostty
+ * ============================================================ */
+
+/* ------------------------------------------------------------
+ * Esconde o botão "Nova aba / Split" (AdwSplitButton) do canto
+ * ESQUERDO da barra de título.
+ *
+ * O GTK4 não tem `display: none`, então o botão é colapsado até
+ * ocupar zero espaço e ficar invisível. As ações continuam
+ * disponíveis pelo teclado e pelo menu ☰ à direita.
+ * ------------------------------------------------------------ */
+
+.window headerbar splitbutton,
+.window headerbar splitbutton > button,
+.window headerbar splitbutton > menubutton,
+.window headerbar splitbutton > menubutton > button {
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  -gtk-icon-size: 1px;
+}
+
+/* ------------------------------------------------------------
+ * Diminui a altura da barra de título.
+ *
+ * O Adwaita usa ~47px. A altura é segurada por dois lugares: o
+ * `min-height` da própria headerbar e o dos widgets internos
+ * (título e botões, ~34px cada). Reduzir só um não adianta.
+ *
+ * Ajuste a altura no `min-height` do `windowhandle` abaixo.
+ * ------------------------------------------------------------ */
+
+.window headerbar {
+  min-height: 0;
+  padding: 0 4px;
+}
+
+.window headerbar > windowhandle {
+  min-height: 32px;
+}
+
+.window headerbar windowtitle {
+  min-height: 0;
+  padding: 0;
+}
+
+.window headerbar button,
+.window headerbar menubutton > button,
+.window headerbar windowcontrols button {
+  min-height: 24px;
+  min-width: 24px;
+  padding: 0 4px;
+}
