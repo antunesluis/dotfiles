@@ -20,6 +20,11 @@ nvim/.config/nvim/.luarc.json
 .cache/
 
 # Codex local state and secrets
+#
+# config.toml não é versionado: o Codex grava nele trust levels, plugins e
+# marketplaces com caminhos absolutos desta máquina. Só AGENTS.md, hooks.json e
+# o hook do herdr vêm do repositório.
+codex/.codex/config.toml
 codex/.codex/auth.json
 codex/.codex/history.jsonl
 codex/.codex/models_cache.json
