@@ -1,13 +1,8 @@
-# ---- System ----
-
-alias update='sudo pacman -Syu && yay -Syu --devel'
-alias pacup='sudo pacman -Syu'
-
 # ---- OpenCode ----
 
 alias oc="opencode"
 
-# ---- OpenCode ----
+# ---- Codex ----
 
 alias cx="codex"
 alias cxr="codex resume"
@@ -43,19 +38,17 @@ alias lg='lazygit'
 
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rvf'
 alias pip-purge='pip list --format freeze | xargs pip uninstall -y'
-alias pip-install-reqs='ls requirements*.txt | xargs -n 1 pip install -r'
+alias pip-install-reqs='for f in requirements*.txt; do pip install -r "$f"; done'
 alias activate='source venv/bin/activate'
-alias venv='python -m venv venv && source venv/bin/activate'
+alias venv='python3 -m venv venv && source venv/bin/activate'
 
 # ---- FZF ----
 
 alias f='fzf'
-alias fh='eval $(history | cut -c 8- | sort -u | fzf)'
 alias fe='nvim $(fzf --preview "bat --style=numbers --color=always {}")'
 
 # ---- Zoxide ----
 
-alias cd='z'
 alias za='zoxide add'
 alias zar='zoxide add -r'
 alias zrm='zoxide remove'
