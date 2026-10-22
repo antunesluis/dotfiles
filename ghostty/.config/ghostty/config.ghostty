@@ -53,7 +53,7 @@ mouse-hide-while-typing = true
 
 # Copia o texto selecionado para o clipboard do sistema
 copy-on-select = clipboard
-clipboard-read = allow
+clipboard-read = ask
 clipboard-write = allow
 
 # O Ghostty mede o histórico em bytes, não em linhas
@@ -69,7 +69,7 @@ shell-integration = detect
 
 # Melhora integração com sudo, SSH e terminfo.
 # `no-title`: o título automático do Ghostty (só as 3 últimas
-# pastas) fica desligado — quem define o título é o hook no
+# pastas) fica desligado - quem define o título é o hook no
 # .zshrc, que mostra o caminho completo.
 shell-integration-features = cursor,sudo,no-title,ssh-env,ssh-terminfo,path
 
@@ -98,7 +98,7 @@ split-divider-color = #54546d
 notify-on-command-finish = unfocused
 # Atenção: isto é uma lista de flags, não um valor único.
 # Escrever só `notify` NÃO desliga o `bell` (que vem ligado por
-# padrão) — troque por `no-bell,notify` se quiser sem o bell.
+# padrão). Troque por `no-bell,notify` se quiser sem o bell.
 notify-on-command-finish-action = bell,notify
 notify-on-command-finish-after = 10s
 
