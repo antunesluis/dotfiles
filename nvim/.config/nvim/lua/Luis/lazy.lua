@@ -19,6 +19,9 @@ require("lazy").setup({
     { import = "Luis.plugins" },
     { import = "Luis.plugins.lsp" },
   },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+  -- Sem checagem automática: as versões vêm do lazy-lock.json versionado, e
+  -- atualizar é um :Lazy update deliberado.
+  checker = { enabled = false },
+  -- Nenhum plugin daqui precisa de luarocks, e o luarocks não está instalado.
+  rocks = { enabled = false },
 })

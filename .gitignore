@@ -3,7 +3,8 @@ tmux/.config/tmux/plugins/*
 !tmux/.config/tmux/plugins/.gitkeep
 
 # Nvim
-nvim/.config/nvim/lazy-lock.json
+# lazy-lock.json é versionado de propósito: fixa as versões dos plugins entre
+# máquinas e permite voltar atrás depois de um :Lazy update ruim.
 nvim/.config/nvim/.luarc.json
 
 # Temporários e backups
