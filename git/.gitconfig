@@ -1,23 +1,27 @@
-[user]
-name = Luis Antunes
-email = luisantunes0914@gmail.com
-username = antunesluis
+# Configuração Git comum a todas as máquinas.
+#
+# Identidade e credenciais mudam por máquina (pessoal x trabalho) e ficam em
+# ~/.gitconfig.local, fora do repositório. Exemplo:
+#
+#   [user]
+#   	name = Luis Antunes
+#   	email = voce@exemplo.com
+#   [github]
+#   	user = antunesluis
+#   [credential "https://github.com"]
+#   	helper =
+#   	helper = !gh auth git-credential
+#
+# Como ~/.gitconfig é um link para este arquivo, `git config --global` e
+# `gh auth setup-git` gravam aqui. Para algo da máquina, use
+# `git config --file ~/.gitconfig.local`.
 
 [init]
-defaultBranch = main
-
-[color]
-ui = true
-status = auto
-diff = auto
-branch = auto
-interactive = auto
-grep = auto
+	defaultBranch = main
 
 [core]
-excludesfile = ~/.gitignore
-editor = nvim
-ignorecase = false
+	editor = nvim
 
-[github]
-user = antunesluis
+# Por último, para que o arquivo local sobrescreva o que estiver acima.
+[include]
+	path = ~/.gitconfig.local
