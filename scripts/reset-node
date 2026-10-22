@@ -1,37 +1,38 @@
 #!/bin/bash
 
-# Certifique-se de estar no diretório correto
+# Reinstala as dependências de um projeto Node do zero, preservando o lockfile.
+# O gerenciador vem do lockfile presente, e a instalação segue as versões
+# travadas nele (ci / frozen-lockfile).
+
 if [ ! -f "package.json" ]; then
-    echo "Erro: Não foi encontrado um arquivo package.json neste diretório."
-    echo "Certifique-se de estar no diretório do seu projeto React antes de rodar este script."
+    echo "Erro: não foi encontrado um package.json neste diretório."
     exit 1
 fi
 
-# Apagar dependências instaladas
-echo "Removendo node_modules e package-lock.json..."
-rm -rf node_modules package-lock.json yarn.lock
+if [ -f "pnpm-lock.yaml" ]; then
+    install=(pnpm install --frozen-lockfile)
+elif [ -f "yarn.lock" ]; then
+    install=(yarn install --frozen-lockfile)
+elif [ -f "package-lock.json" ]; then
+    install=(npm ci)
+else
+    install=(npm install)
+fi
 
-# Reinstalar dependências
-echo "Reinstalando dependências..."
-npm install
+if ! command -v "${install[0]}" >/dev/null 2>&1; then
+    echo "Erro: ${install[0]} não está instalado."
+    exit 1
+fi
 
-# Limpar build (caso exista)
+echo "Removendo node_modules..."
+rm -rf node_modules
+
 if [ -d "build" ]; then
-    echo "Removendo a pasta de build..."
+    echo "Removendo a pasta build..."
     rm -rf build
 fi
 
-# Limpar caches (opcional)
-echo "Limpando caches do npm..."
-npm cache clean --force
+echo "Reinstalando dependências com: ${install[*]}"
+"${install[@]}" || exit 1
 
-# Opcional: Inicializar o projeto novamente
-read -p "Deseja rodar o comando 'npm start' para iniciar o projeto? (y/n): " start_choice
-if [[ "$start_choice" == "y" || "$start_choice" == "Y" ]]; then
-    echo "Iniciando o projeto..."
-    npm start
-else
-    echo "Reset completo. Você pode iniciar o projeto manualmente usando 'npm start'."
-fi
-
-echo "Reset finalizado com sucesso."
+echo "Reset finalizado."

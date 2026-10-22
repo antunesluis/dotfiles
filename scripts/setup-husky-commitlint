@@ -1,63 +1,36 @@
 #!/bin/bash
 
-# Variáveis
-CONFIG_DIR=".config-git-tools"
-HUSKY_DIR="$CONFIG_DIR/husky"
-COMMITLINT_CONFIG="$CONFIG_DIR/commitlint.config.js"
+# Configura Husky (v9+) e Commitlint num projeto Node, com os hooks numa pasta
+# oculta em vez de .husky/ e a configuração do Commitlint no package.json.
 
-echo "Configurando Husky e Commitlint..."
+HOOKS_DIR=".config-git-tools/husky"
 
-# Inicializar o projeto, caso não tenha package.json
+set -e
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Erro: rode dentro de um repositório git."
+    exit 1
+fi
+
 if [ ! -f "package.json" ]; then
     echo "Criando package.json..."
-    npm init -y
+    npm init -y >/dev/null
 fi
 
-# Criar a pasta de configuração oculta, se não existir
-if [ ! -d "$CONFIG_DIR" ]; then
-    echo "Criando pasta de configuração oculta: $CONFIG_DIR"
-    mkdir -p "$CONFIG_DIR"
-fi
-
-# Instalar dependências necessárias
-echo "Instalando dependências Husky e Commitlint..."
+echo "Instalando Husky e Commitlint..."
 npm install --save-dev husky @commitlint/cli @commitlint/config-conventional
 
-# Inicializar Husky
-echo "Inicializando Husky..."
-npx husky install
+echo "Configurando hooks em $HOOKS_DIR..."
+mkdir -p "$HOOKS_DIR"
+npm pkg set scripts.prepare="husky $HOOKS_DIR"
+npx husky "$HOOKS_DIR"
 
-# Mover a pasta .husky para .config/husky
-if [ -d ".husky" ]; then
-    echo "Movendo a pasta .husky para $HUSKY_DIR"
-    mv .husky "$HUSKY_DIR"
+printf '%s\n' 'npx --no -- commitlint --edit "$1"' >"$HOOKS_DIR/commit-msg"
+
+if [ -z "$(npm pkg get commitlint | tr -d '{}')" ]; then
+    echo "Configurando Commitlint no package.json..."
+    npm pkg set 'commitlint.extends[0]=@commitlint/config-conventional'
 fi
 
-# Atualizar script prepare para apontar para o novo diretório
-echo "Atualizando o script prepare no package.json..."
-npx json -I -f package.json -e "this.scripts.prepare=\"husky install $HUSKY_DIR\""
-
-# Configurar o hook commit-msg no novo diretório
-echo "Configurando hook commit-msg no Husky..."
-npx husky add "$HUSKY_DIR/commit-msg" "npx --no-install commitlint --edit \$1"
-
-# Configurar Commitlint
-if [ ! -f "$COMMITLINT_CONFIG" ]; then
-    echo "Criando configuração Commitlint em $COMMITLINT_CONFIG..."
-    cat <<EOL >"$COMMITLINT_CONFIG"
-module.exports = {
-  extends: ['@commitlint/config-conventional'],
-};
-EOL
-fi
-
-# Incluir a pasta de configuração no package.json (opcional)
-if ! grep -q '"commitlint"' package.json; then
-    echo "Adicionando referência ao Commitlint no package.json..."
-    npx json -I -f package.json -e 'this.commitlint={extends:["./.config/commitlint.config.js"]}'
-fi
-
-# Finalizar
-echo "Configuração concluída!"
-echo "Husky foi configurado para usar hooks na pasta $HUSKY_DIR."
-echo "A configuração do Commitlint está em $CONFIG_DIR."
+echo "Configuração concluída."
+echo "Hooks em $HOOKS_DIR (core.hooksPath = $(git config core.hooksPath))."

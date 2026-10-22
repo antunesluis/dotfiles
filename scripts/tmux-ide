@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# Editor à esquerda, dois terminais empilhados à direita, foco no editor.
+# `{left}` não depende do pane-base-index (1 no tmux.conf), ao contrário de `-t 0`.
 tmux new-session \; \
-    split-window -h -p 40 \; \
-    split-window -v -p 50 \; \
-    select-pane -t 0
+    split-window -h -l 40% \; \
+    split-window -v -l 50% \; \
+    select-pane -t '{left}'
