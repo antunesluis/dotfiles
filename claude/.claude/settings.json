@@ -1,35 +1,10 @@
 {
-  "model": "sonnet",
-  "language": "Portuguese",
-  "effortLevel": "high",
-  "theme": "dark",
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "preferredNotifChannel": "ghostty",
-  "workflowKeywordTriggerEnabled": false,
   "attribution": {
     "commit": "",
     "pr": "",
     "sessionUrl": false
   },
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
-  },
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Bash(git status:*)",
       "Bash(git diff:*)",
@@ -52,6 +27,51 @@
       "Bash(chown:*)",
       "Bash(git reset --hard:*)",
       "Bash(git checkout --:*)"
+    ],
+    "defaultMode": "default"
+  },
+  "env": {
+    "CLAUDE_CODE_SHELL": "/bin/bash"
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
+            "timeout": 10
+          }
+        ]
+      }
     ]
-  }
+  },
+  "workflowKeywordTriggerEnabled": false,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "buj@dev-kit": true
+  },
+  "extraKnownMarketplaces": {
+    "dev-kit": {
+      "source": {
+        "source": "github",
+        "repo": "diogopimentelc/buj-dev-kit"
+      }
+    }
+  },
+  "language": "Portuguese",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "tui": "fullscreen",
+  "theme": "dark",
+  "preferredNotifChannel": "ghostty"
 }
