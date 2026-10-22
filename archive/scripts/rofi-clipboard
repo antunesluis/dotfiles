@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Diretório para guardar as miniaturas temporárias
+CACHE_DIR="$HOME/.cache/rofi-clipboard"
+mkdir -p "$CACHE_DIR"
+
+# Função para limpar miniaturas antigas
+cleanup_thumbnails() {
+    find "$CACHE_DIR" -type f -mtime +1 -delete
+}
+
+# Função para gerar miniatura
+generate_thumbnail() {
+    local input_file="$1"
+    local output_file="$2"
+    convert "$input_file" -resize 128x128^ -gravity center -extent 128x128 "$output_file"
+}
+
+case $1 in
+"text")
+    cliphist list | rofi -dmenu \
+        -theme-str 'entry { placeholder: "Pesquisar no clipboard..."; }' \
+        -theme-str 'listview { columns: 1; }' \
+        -theme-str 'window { width: 40%; }' \
+        -p "󰅎 Clipboard" \
+        -l 10 \
+        -i | cliphist decode | wl-copy
+    ;;
+"image")
+    # Limpa miniaturas antigas
+    cleanup_thumbnails
+
+    # Cria lista temporária de imagens com miniaturas
+    tmp_list=$(mktemp)
+    while IFS= read -r line; do
+        if [[ $line =~ "binary data" ]]; then
+            # Gera um nome único para a miniatura
+            thumb_name=$(echo "$line" | md5sum | cut -d' ' -f1)
+            thumb_path="$CACHE_DIR/$thumb_name.png"
+
+            # Decodifica a imagem e gera a miniatura se ainda não existir
+            if [ ! -f "$thumb_path" ]; then
+                cliphist decode <<<"$line" >"$CACHE_DIR/temp.png"
+                generate_thumbnail "$CACHE_DIR/temp.png" "$thumb_path"
+                rm "$CACHE_DIR/temp.png"
+            fi
+
+            # Adiciona entrada formatada à lista
+            echo -en "$line\x00icon\x1f$thumb_path\n"
+        fi
+    done < <(cliphist list -i) >"$tmp_list"
+
+    # Mostra o menu Rofi com miniaturas
+    selected=$(cat "$tmp_list" | rofi -dmenu \
+        -theme-str 'entry { placeholder: "Pesquisar imagens..."; }' \
+        -theme-str 'listview { columns: 1; }' \
+        -theme-str 'window { width: 40%; }' \
+        -theme-str 'element-icon { size: 128px; }' \
+        -theme-str 'element { children: [element-icon, element-text]; }' \
+        -show-icons \
+        -p "󰋩 Imagens" \
+        -l 10 \
+        -i)
+
+    # Se algo foi selecionado, copia para o clipboard
+    if [ -n "$selected" ]; then
+        cliphist decode <<<"$selected" | wl-copy
+        cliphist decode <<<"$selected" >/tmp/cliphist.png
+        imv /tmp/cliphist.png # Aqui você coloca o visualizador que preferir
+    fi
+
+    # Limpa arquivo temporário
+    rm "$tmp_list"
+    ;;
+*)
+    echo "Uso: $0 [text|image]"
+    exit 1
+    ;;
+esac
