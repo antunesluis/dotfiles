@@ -4,7 +4,14 @@
 
 This is a GNU Stow-based dotfiles repository. Each top-level package mirrors the target home directory layout. For example, `nvim/.config/nvim` links to `~/.config/nvim`, `zsh/.zshrc` links to `~/.zshrc`, and `git/.gitconfig` links to `~/.gitconfig`.
 
-Primary development packages are `nvim`, `zsh`, `tmux`, `ghostty`, `git`, `claude`, `codex`, `opencode`, `herdr`, and `agents`. Desktop packages such as `hypr`, `waybar`, `rofi`, `alacritty`, `swaync`, `swaylock`, `wlogout`, `wofi`, and `yazi` are still part of the repo but may be inactive on the current machine. Helper commands are in `scripts/`. Static media is under `assets/screenshots/` and `wallpapers/.config/wallpapers/`.
+Active packages are `agents`, `alacritty`, `bash`, `claude`, `codex`, `ghostty`, `git`, `herdr`, `nvim`, `opencode`, `tmux`, and `zsh`. Configs from the old Arch + Hyprland setup live in `archive/` and are not stowed. Helper commands are in `scripts/`, which `~/.profile` puts on `PATH` directly; it is not a Stow package.
+
+Shell settings are split by scope:
+
+- `bash/.profile` holds `PATH` and tool variables in POSIX `sh`. `zsh/.zprofile` loads it for zsh login shells, including the GNOME session, so graphical apps and coding agents share the terminal's environment. New `PATH` entries go here, not in `.zshrc`.
+- `zsh/.zshrc` holds interactive-only settings. Installers often append blocks to its end; move them above the final zoxide block, and move any `PATH` change to `bash/.profile`.
+- Java comes only from SDKMAN. Do not export `JAVA_HOME` anywhere else.
+- Do not alias `cd` to `z`: agent shell snapshots break on it, and `z` jumps elsewhere when the target directory does not exist.
 
 Agent memory is split by scope:
 
@@ -17,9 +24,9 @@ Agent memory is split by scope:
 
 ## Build, Test, and Development Commands
 
-- `stow -nv */`: performs a dry run and reports symlink operations without modifying files.
-- `stow -v */`: applies symlinks for all top-level packages. Excludes `claude`, see below.
-- `stow -v --no-folding claude`: the `claude` package must never fold. `~/.claude` mixes tracked config with Claude Code runtime state and `~/.claude/.credentials.json`; if Stow folds the directory into this repo, that state and the auth token get written inside git. Run it separately from `stow -v */`.
+- `stow -nv agents alacritty bash codex ghostty git herdr nvim opencode tmux zsh`: performs a dry run and reports symlink operations without modifying files.
+- `stow -v agents alacritty bash codex ghostty git herdr nvim opencode tmux zsh`: applies symlinks for every package except `claude`, see below. Do not use `stow -v */`: the glob also picks up `scripts/` and `archive/`.
+- `stow -v --no-folding claude`: the `claude` package must never fold. `~/.claude` mixes tracked config with Claude Code runtime state and `~/.claude/.credentials.json`; if Stow folds the directory into this repo, that state and the auth token get written inside git. Run it separately from the command above.
 - `stow -nv <package>`: dry-runs one package, useful for new agent packages.
 - `bash -n scripts/*`: checks shell scripts for parse errors.
 - `shellcheck scripts/*`: runs stronger shell linting when ShellCheck is installed.
@@ -46,4 +53,4 @@ Pull requests should describe the affected package, list manual validation comma
 
 ## Security & Configuration Tips
 
-Do not commit secrets, host-specific tokens, private SSH material, generated caches, auth files, history files, local SQLite state, or logs. Keep local lock files and plugin downloads out of version control unless they are intentionally tracked.
+Do not commit secrets, host-specific tokens, private SSH material, generated caches, auth files, history files, local SQLite state, or logs. Keep local lock files and plugin downloads out of version control unless they are intentionally tracked (`nvim/.config/nvim/lazy-lock.json` is). Machine-specific Git identity and credential helpers go in the untracked `~/.gitconfig.local`, which `git/.gitconfig` includes. `~/.codex/config.toml` is not tracked because Codex writes machine paths into it.
